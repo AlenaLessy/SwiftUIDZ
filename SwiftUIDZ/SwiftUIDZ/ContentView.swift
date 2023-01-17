@@ -9,24 +9,44 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // MARK: - Private Constants
+    
+    private enum Constants {
+        static let oldValueText = "Пример Alert c 2 кнопками и логикой"
+        static let LabelOneText = "Пример Alert"
+        static let LabelTwoText = "Пример ActionSheet"
+        static let LabelThreeText = "Пример ActionSheet c кнопками и логикой"
+        static let buttonsLabelText = "Показать"
+        static let alertOneTitleText = "Пример алерта"
+        static let alertTwoTitleText = "Изменить текст кнопки?"
+        static let alertTwoDefaultButtonTitle = "Меняем"
+        static let newValueText = "Новый текст"
+        static let actionSheetTitleText = "А вот он я"
+        static let actionSheetTwoTitleText = "Внимание!"
+        static let actionSheetTwoMessageText = "Сейчас будем менять цвета!"
+        static let actionSheetTwoDefaultButtonText =  "меняем цвет надписи"
+    }
+    
     @State var isAlertExample = false
     @State var isTwoButtonAlertExample = false
     @State var isActionSheetExample = false
     @State var isActionSheetTwoExample = false
-    @State var oldValueText = "Пример Alert c 2 кнопками и логикой"
+    @State var oldValueText = Constants.oldValueText
     @State var textColor = Color.black
     
     var body: some View {
         VStack {
-            Text("Пример Alert").foregroundColor(Color.black)
+            Text(Constants.LabelOneText).foregroundColor(Color.black)
             showAlert().padding(15)
                
             Text(oldValueText)
             showTwoButtonAlert().padding(15)
-            Text("Пример ActionSheet")
-            showThreeButtonAlert().padding(15)
-            Text("Пример ActionSheet c кнопками и логикой").foregroundColor(textColor)
-            showButtonAсtionSheet().padding(15)
+            
+            Text(Constants.LabelTwoText)
+            showActionSheet().padding(15)
+            
+            Text(Constants.LabelThreeText).foregroundColor(textColor)
+            showTwoAсtionSheet().padding(15)
         }
     }
     
@@ -35,13 +55,13 @@ struct ContentView: View {
             isAlertExample = true
         },
                       label: {
-            Text("Показать")
+            Text(Constants.buttonsLabelText)
         })
         .background(Color.blue)
         .foregroundColor(Color.white)
         .cornerRadius(2)
         .alert(isPresented: $isAlertExample) {
-            Alert(title: Text("Пример алерта"))
+            Alert(title: Text(Constants.alertOneTitleText))
         }
     }
     
@@ -50,39 +70,39 @@ struct ContentView: View {
             isTwoButtonAlertExample = true
         },
                       label: {
-            Text("Показать")
+            Text(Constants.buttonsLabelText)
         })
         .foregroundColor(Color.white)
         .cornerRadius(5)
         .background(Color.brown)
         
         .alert(isPresented: $isTwoButtonAlertExample) {
-            Alert(title: Text("Изменить текст кнопки?"), primaryButton: .default(Text("Меняем"), action: {
-                oldValueText = "Новый текст"
+            Alert(title: Text(Constants.alertTwoTitleText), primaryButton: .default(Text(Constants.alertTwoDefaultButtonTitle), action: {
+                oldValueText = Constants.newValueText
             }), secondaryButton: .cancel())
         }
     }
     
-    fileprivate func showThreeButtonAlert() -> some View {
+    fileprivate func showActionSheet() -> some View {
         return Button(action: {
             isActionSheetExample = true
         },
                       label: {
-            Text("Показать")
+            Text(Constants.buttonsLabelText)
         })
         .foregroundColor(Color.white)
         .cornerRadius(5)
         .background(Color.red)
         
-        .actionSheet(isPresented: $isActionSheetExample, content: { ActionSheet(title: Text("А вот он я"))})
+        .actionSheet(isPresented: $isActionSheetExample, content: { ActionSheet(title: Text(Constants.actionSheetTitleText))})
     }
     
-    fileprivate func showButtonAсtionSheet() -> some View {
+    fileprivate func showTwoAсtionSheet() -> some View {
         return Button(action: {
             isActionSheetTwoExample = true
         },
                       label: {
-            Text("Показать")
+            Text(Constants.buttonsLabelText)
         })
         .foregroundColor(Color.white)
         .cornerRadius(5)
@@ -90,9 +110,9 @@ struct ContentView: View {
         
         .actionSheet(
             isPresented: $isActionSheetTwoExample, content: {
-                ActionSheet(title: Text("Внимание!"),
-                            message: Text("Сейчас будем менять цвета!"),
-                            buttons: [.default(Text("меняем цвет надписи"), action: { textColor = .green }),
+                ActionSheet(title: Text(Constants.actionSheetTwoTitleText),
+                            message: Text(Constants.actionSheetTwoMessageText),
+                            buttons: [.default(Text(Constants.actionSheetTwoDefaultButtonText), action: { textColor = .green }),
                                       .cancel()
                                                                                                                                                                    ])})
     }
