@@ -12,41 +12,45 @@ struct ContentView: View {
     // MARK: - Private Constants
     
     private enum Constants {
-        static let oldValueText = "Пример Alert c 2 кнопками и логикой"
-        static let LabelOneText = "Пример Alert"
-        static let LabelTwoText = "Пример ActionSheet"
-        static let LabelThreeText = "Пример ActionSheet c кнопками и логикой"
+        
+        
+        static let alertButtonsAndLogicText = "Пример Alert c 2 кнопками и логикой"
+        static let LabelAlertText = "Пример Alert"
+        static let labelActionSheetText = "Пример ActionSheet"
+        static let labelActionSheetWithButtonText = "Пример ActionSheet c кнопками и логикой"
         static let buttonsLabelText = "Показать"
         static let alertOneTitleText = "Пример алерта"
         static let alertTwoTitleText = "Изменить текст кнопки?"
         static let alertTwoDefaultButtonTitle = "Меняем"
         static let newValueText = "Новый текст"
         static let actionSheetTitleText = "А вот он я"
-        static let actionSheetTwoTitleText = "Внимание!"
+        static let actionSheetAlarmTitle = "Внимание!"
         static let actionSheetTwoMessageText = "Сейчас будем менять цвета!"
         static let actionSheetTwoDefaultButtonText =  "меняем цвет надписи"
+        static let cornerRadiusNumber: CGFloat = 5
+        static let paddingNumber: CGFloat = 15
     }
     
     @State var isAlertExample = false
     @State var isTwoButtonAlertExample = false
     @State var isActionSheetExample = false
     @State var isActionSheetTwoExample = false
-    @State var oldValueText = Constants.oldValueText
+    @State var oldValueText = Constants.labelActionSheetWithButtonText
     @State var textColor = Color.black
     
     var body: some View {
         VStack {
-            Text(Constants.LabelOneText).foregroundColor(Color.black)
-            showAlert().padding(15)
+            Text(Constants.LabelAlertText).foregroundColor(.black)
+            showAlert().padding(Constants.paddingNumber)
                
             Text(oldValueText)
-            showTwoButtonAlert().padding(15)
+            showTwoButtonAlert().padding(Constants.paddingNumber)
             
-            Text(Constants.LabelTwoText)
-            showActionSheet().padding(15)
+            Text(Constants.labelActionSheetText)
+            showActionSheet().padding(Constants.paddingNumber)
             
-            Text(Constants.LabelThreeText).foregroundColor(textColor)
-            showTwoAсtionSheet().padding(15)
+            Text(Constants.labelActionSheetWithButtonText).foregroundColor(textColor)
+            showTwoAсtionSheet().padding(Constants.paddingNumber)
         }
     }
     
@@ -58,8 +62,8 @@ struct ContentView: View {
             Text(Constants.buttonsLabelText)
         })
         .background(Color.blue)
-        .foregroundColor(Color.white)
-        .cornerRadius(2)
+        .foregroundColor(.white)
+        .cornerRadius(Constants.cornerRadiusNumber)
         .alert(isPresented: $isAlertExample) {
             Alert(title: Text(Constants.alertOneTitleText))
         }
@@ -72,9 +76,9 @@ struct ContentView: View {
                       label: {
             Text(Constants.buttonsLabelText)
         })
-        .foregroundColor(Color.white)
-        .cornerRadius(5)
-        .background(Color.brown)
+        .foregroundColor(.white)
+        .cornerRadius(Constants.cornerRadiusNumber)
+        .background(.brown)
         
         .alert(isPresented: $isTwoButtonAlertExample) {
             Alert(title: Text(Constants.alertTwoTitleText), primaryButton: .default(Text(Constants.alertTwoDefaultButtonTitle), action: {
@@ -90,10 +94,9 @@ struct ContentView: View {
                       label: {
             Text(Constants.buttonsLabelText)
         })
-        .foregroundColor(Color.white)
-        .cornerRadius(5)
-        .background(Color.red)
-        
+        .foregroundColor(.white)
+        .cornerRadius(Constants.cornerRadiusNumber)
+        .background(.red)
         .actionSheet(isPresented: $isActionSheetExample, content: { ActionSheet(title: Text(Constants.actionSheetTitleText))})
     }
     
@@ -104,13 +107,12 @@ struct ContentView: View {
                       label: {
             Text(Constants.buttonsLabelText)
         })
-        .foregroundColor(Color.white)
-        .cornerRadius(5)
-        .background(Color.green)
-        
+        .foregroundColor(.white)
+        .cornerRadius(Constants.cornerRadiusNumber)
+        .background(.green)
         .actionSheet(
             isPresented: $isActionSheetTwoExample, content: {
-                ActionSheet(title: Text(Constants.actionSheetTwoTitleText),
+                ActionSheet(title: Text(Constants.actionSheetAlarmTitle),
                             message: Text(Constants.actionSheetTwoMessageText),
                             buttons: [.default(Text(Constants.actionSheetTwoDefaultButtonText), action: { textColor = .green }),
                                       .cancel()
