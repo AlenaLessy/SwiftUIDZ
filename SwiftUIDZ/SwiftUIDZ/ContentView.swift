@@ -24,7 +24,7 @@ struct ContentView: View {
         static let profileInfoText = "Apple ID, iCloud, контент и покупки"
         static let offersAppleIdText = "Предложения Apple ID"
         static let offersAppleIdCount = "3"
-        static let updateText = "iOS 16.2: уже доступно"
+        static let updateIOSText = "iOS 16.2: уже доступно"
         static let updateCount = "1"
         static let airplaneModeText = "Авиарежим"
         static let wiFiText = "Wi-Fi"
@@ -124,7 +124,7 @@ struct ContentView: View {
     
     fileprivate func makeUpdateContainer() -> some View {
         HStack {
-            Text(Constants.updateText)
+            Text(Constants.updateIOSText)
             Spacer()
             ZStack {
                 Circle()
