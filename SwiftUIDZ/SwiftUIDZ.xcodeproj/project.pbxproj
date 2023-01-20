@@ -11,6 +11,8 @@
 		5746F8F4297698A400FB06A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* ContentView.swift */; };
 		5746F8F6297698A500FB06A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F5297698A500FB06A5 /* Assets.xcassets */; };
 		5746F8F9297698A500FB06A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */; };
+		57D9A74B297A71E600236E4C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A74A297A71E600236E4C /* ActivityViewController.swift */; };
+		57D9A74D297A721600236E4C /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A74C297A721600236E4C /* Car.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5746F8FE297698A500FB06A5 /* SwiftUIDZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F908297698A500FB06A5 /* SwiftUIDZUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57D9A74A297A71E600236E4C /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		57D9A74C297A721600236E4C /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */,
+				57D9A74A297A71E600236E4C /* ActivityViewController.swift */,
 				5746F8F3297698A400FB06A5 /* ContentView.swift */,
+				57D9A74C297A721600236E4C /* Car.swift */,
 				5746F8F5297698A500FB06A5 /* Assets.xcassets */,
 				5746F8F7297698A500FB06A5 /* Preview Content */,
 			);
@@ -233,6 +239,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5746F8F4297698A400FB06A5 /* ContentView.swift in Sources */,
+				57D9A74B297A71E600236E4C /* ActivityViewController.swift in Sources */,
+				57D9A74D297A721600236E4C /* Car.swift in Sources */,
 				5746F8F2297698A400FB06A5 /* SwiftUIDZApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
