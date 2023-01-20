@@ -9,21 +9,55 @@ import SwiftUI
 
 /// Шоурум
 struct ContentView: View {
+    
     // MARK: - Private Constants
+    
     private enum Constants {
         static let salonTypes = ["Кожа-рожа", "Тряпично-практично", "Странный деревянный"]
         static let showroomNameText = "Тачилы"
         static let emptyString = ""
+        static let buiText = "Купить"
+        static let buiButtonAlertTitleText = "Поздравляем!"
+        static let buiButtonAlertMessageText = "Вы купили ведро"
+        static let salonPickerText = "Салон"
+        static let carPickerText = "Car"
+        static let steeringWheelText = "Наличие руля"
+        static let priceText = "Стоимость:"
+        static let currencyText = "бублей"
+        static let enginePowerText = "Мощность двигателя:"
+        static let numberEnginePowerText = "хомяка"
+        static let toningText = "Тонировка:"
+        static let underestimateText = "Занизить"
+        static let shareButtonTitleText = "Похвастаться"
+        static let infoActivityViewText = "Купил ведро -"
+        static let buiButtonAlertDefaultText = "Ок"
         static let underestimateNumber: CGFloat = 70
-
         static let underestimateRange: ClosedRange<CGFloat> = 0...100
+        static let spacingVStack: CGFloat = 15
+        static let showroomNameTextOffset: CGFloat = 10
+        static let spacingButton: CGFloat = 50
+        static let showroomNameTextFontSize: CGFloat = 30
+        static let buiButtonFontSize: CGFloat = 15
+        static let buiButtonWidthNumber: CGFloat = 90
+        static let buiButtonHeightNumber: CGFloat = 25
+        static let buiButtonCornerRadiusNumber: CGFloat = 10
+        static let carImageWidthNumber: CGFloat = 350
+        static let carImageHeightNumber: CGFloat = 300
+        static let carImageCornerRadiusNumber: CGFloat = 50
+        static let zeroNumber = 0
+        static let shareButtonTitleFontNumber: CGFloat = 15
+        static let shareButtonWidthNumber: CGFloat = 130
+        static let shareButtonHeightNumber: CGFloat = 25
+        static let shareButtonCornerRadiusNumber: CGFloat = 10
+        
     }
+    
     // MARK: - Public Properties
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 15) {
-                showroomNameText.offset(y: 10)
+            VStack(spacing: Constants.spacingVStack) {
+                showroomNameText.offset(y: Constants.showroomNameTextOffset)
                 carImage
                 carPicker
                 Form {
@@ -37,7 +71,7 @@ struct ContentView: View {
                         underestimateSlier
                     }
                 }
-                HStack(spacing: 50) {
+                HStack(spacing: Constants.spacingButton) {
                     buiButton
                     shareButton
                 }
@@ -71,22 +105,19 @@ struct ContentView: View {
             price: 100000)
     ]
     
-  //  private let showroom = Showroom()
-    @State private var selectionCarPicker = 0
-    @State private var selectionSalonPicker = 0
+    @State private var selectionCarPicker = Constants.zeroNumber
+    @State private var selectionSalonPicker = Constants.zeroNumber
     @State private var isShare = false
     @State private var isBui = false
     @State private var isSteeringWheel = false
     @State private var underestimate = Constants.underestimateNumber
 
-   
-    
     private var salonTypes = Constants.salonTypes
     
     private var showroomNameText: some View {
         Text(Constants.showroomNameText)
             .bold()
-            .font(.system(size: 30))
+            .font(.system(size: Constants.showroomNameTextFontSize))
             .foregroundColor(.red)
     }
         
@@ -94,28 +125,28 @@ struct ContentView: View {
         return Button {
             isBui = true
         } label: {
-            Text("Купить").font(.system(size: 15))
+            Text(Constants.buiText).font(.system(size: Constants.buiButtonFontSize))
                 .padding()
         }.alert(isPresented: $isBui) {
-            Alert(title: Text("Поздравляем!"), message: Text("Вы купили ведро"), primaryButton: .cancel(), secondaryButton: .default(Text("Ок")))
-        }.frame(width: 90, height: 25)
+            Alert(title: Text(Constants.buiButtonAlertTitleText), message: Text(Constants.buiButtonAlertMessageText), primaryButton: .cancel(), secondaryButton: .default(Text(Constants.buiButtonAlertDefaultText)))
+        }.frame(width: Constants.buiButtonWidthNumber, height: Constants.buiButtonHeightNumber)
             .foregroundColor(.black)
             .background(Color.red)
-            .cornerRadius(10)
+            .cornerRadius(Constants.buiButtonCornerRadiusNumber)
     }
     
     private var carImage: some View {
         Image(cars[selectionCarPicker].imageName)
             .resizable()
-            .frame(width: 350,
-                   height: 300)
-            .cornerRadius(50)
+            .frame(width: Constants.carImageWidthNumber,
+                   height: Constants.carImageHeightNumber)
+            .cornerRadius(Constants.carImageCornerRadiusNumber)
             
     }
     
     private var salonPicker: some View {
-            Picker("Салон", selection: $selectionSalonPicker) {
-                             ForEach(0 ..< salonTypes.count) {
+        Picker(Constants.salonPickerText, selection: $selectionSalonPicker) {
+            ForEach(Constants.zeroNumber ..< salonTypes.count) {
                                  Text(salonTypes[$0])
                              }
                          }
@@ -123,8 +154,8 @@ struct ContentView: View {
                      }
             
     private var carPicker: some View {
-        Picker("Car", selection: $selectionCarPicker) {
-            ForEach(0 ..< cars.count) {
+        Picker(Constants.carPickerText, selection: $selectionCarPicker) {
+            ForEach(Constants.zeroNumber ..< cars.count) {
                 Text(cars[$0].name)
             }
         }
@@ -135,23 +166,23 @@ struct ContentView: View {
     
     private var
     steeringWheelText: some View {
-        Toggle("Наличие руля", isOn: $isSteeringWheel).colorMultiply(.red)
+        Toggle(Constants.steeringWheelText, isOn: $isSteeringWheel).colorMultiply(.red)
     }
         
     private var priceText: some View {
-        Text("Стоимость: \(cars[selectionCarPicker].price) бублей")
+        Text("\(Constants.priceText) \(cars[selectionCarPicker].price) \(Constants.currencyText)")
     }
     
     private var enginePowerText: some View {
-        Text("Мощность двигателя: \(cars[selectionCarPicker].enginePower) хомяка")
+        Text("\(Constants.enginePowerText) \(cars[selectionCarPicker].enginePower) \(Constants.numberEnginePowerText)")
     }
     
     private var toningText: some View {
-        Text("Тонировка: \(cars[selectionCarPicker].toning)")
+        Text("\(Constants.toningText) \(cars[selectionCarPicker].toning)")
     }
     
     private var underestimateText: some View {
-        Text("Занизить")
+        Text(Constants.underestimateText)
     }
     
     private var underestimateSlier: some View {
@@ -162,13 +193,13 @@ struct ContentView: View {
         Button {
             isShare = true
         } label: {
-            Text("Похвастаться").font(.system(size: 15))
-                .padding().frame(width: 130, height: 25)
+            Text(Constants.shareButtonTitleText).font(.system(size: Constants.shareButtonTitleFontNumber))
+                .padding().frame(width: Constants.shareButtonWidthNumber, height: Constants.shareButtonHeightNumber)
                 .foregroundColor(.black)
                 .background(Color.red)
-                .cornerRadius(10)
+                .cornerRadius(Constants.shareButtonCornerRadiusNumber)
         }.sheet(isPresented: $isShare) {
-            let info = "Купил ведро - \(cars[selectionCarPicker].name)"
+            let info = "\(Constants.infoActivityViewText) \(cars[selectionCarPicker].name)"
             ActivityViewController(items: [info])
         }
     }
