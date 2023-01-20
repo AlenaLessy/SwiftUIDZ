@@ -1,12 +1,9 @@
-//
 //  ContentView.swift
 //  SwiftUIDZ
-//
 //  Created by Алена Панченко on 17.01.2023.
-//
 
-import SwiftUI
 import Foundation
+import SwiftUI
 
 /// Плеер
 struct ContentView: View {
@@ -75,19 +72,19 @@ struct ContentView: View {
     private var imageName = Constants.playSystemImageName
 
     private var songsName: Text {
-        return Text(playerViewModel.getSongName()).font(.system(size: Constants.songsNameFontSize))
+        Text(playerViewModel.getSongName()).font(.system(size: Constants.songsNameFontSize))
             .bold()
     }
     
     private var albumImage: some View {
-        return Image(playerViewModel.getAlbomImageName())
+        Image(playerViewModel.getAlbomImageName())
             .resizable()
             .aspectRatio(Constants.aspectRationNumber, contentMode: .fit)
             .padding()
     }
     
     private var albumNameText: Text {
-        return Text(playerViewModel.getAlbumName())
+        Text(playerViewModel.getAlbumName())
             .bold()
             .foregroundColor(.gray)
     }
@@ -102,7 +99,7 @@ struct ContentView: View {
     }
     
     private var playButton: Button<Image> {
-        return Button {
+         Button {
             if self.playerViewModel.isPlaying {
                 self.playerViewModel.play()
                 self.playerViewModel.isPlaying = false
@@ -116,35 +113,33 @@ struct ContentView: View {
     }
     
     private var pastTimeText: Text {
-        return Text(verbatim: ( playerViewModel.getPastTime().formatted(.dateTime.minute()
+         Text(verbatim: ( playerViewModel.getPastTime().formatted(.dateTime.minute()
             .second())))
     }
     
     private var timeLeftText: Text {
-        return Text(verbatim: ( playerViewModel.getTimeLeft().formatted(.dateTime.minute()
+         Text(verbatim: ( playerViewModel.getTimeLeft().formatted(.dateTime.minute()
             .second())))
     }
     
     private var stopButton: Button<Image> {
-        return Button {
+         Button {
             self.playerViewModel.currentDuration = Constants.zeroFloatNumber
             self.playerViewModel.stop()
-            
         } label: {
             Image(systemName: Constants.stopSystemImageName)
         }
     }
     
     private var playAndStopButton: HStack<TupleView<(Button<Image>, Button<Image>)>> {
-        return HStack(spacing: Constants.playAndStopButtonSpacing) {
+         HStack(spacing: Constants.playAndStopButtonSpacing) {
             playButton
             stopButton
         }
     }
     
     private var forwardButton: Button<Image> {
-        return Button {
-            
+         Button {
             self.playerViewModel.nextSong()
             playerViewModel.isPlaying = true
         } label: {
@@ -172,9 +167,7 @@ struct ContentView: View {
         .frame(width: Constants.buttonWidthNumber, height: Constants.buttonHeightNumber)
         .cornerRadius(Constants.buttonCornerRadiusNumber)
         .background(.blue)
-        
         .alert(isPresented: $isShareButton) {
-
             Alert(title: Text(Constants.shareSongButtonAlertTitleText),
                   primaryButton: .default(Text(Constants.shareSongAlertButtonYesText)),
                   secondaryButton: .default(Text(Constants.shareSongAlertButtonNoText)))
@@ -191,7 +184,6 @@ struct ContentView: View {
         .frame(width: Constants.buttonWidthNumber, height: Constants.buttonHeightNumber)
         .cornerRadius(Constants.buttonCornerRadiusNumber)
         .background(.blue)
-      
         .actionSheet(isPresented: $isDownloadButton) {
             ActionSheet(title: Text("\(playerViewModel.getSongName()) \(Constants.actionSheetTitleText)"))
         }

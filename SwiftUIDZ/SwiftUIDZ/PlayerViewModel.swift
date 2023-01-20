@@ -1,9 +1,6 @@
-//
-//  PlayerViewModel.swift
+//  ContentView.swift
 //  SwiftUIDZ
-//
-//  Created by Алена Панченко on 20.01.2023.
-//
+//  Created by Алена Панченко on 17.01.2023.
 
 import AVFoundation
 import SwiftUI
@@ -42,17 +39,16 @@ final class PlayerViewModel: ObservableObject {
     ]
     private var numberCurrentSong = Constants.zeroIntNumber
 
-    
     // MARK: - Public Methods
     
-    public func setTime(value: Float) {
+    func setTime(value: Float) {
         guard let time = TimeInterval(exactly: value) else { return }
         player?.currentTime = time
         player?.play()
         setupTimer()
     }
     
-    public func play() {
+    func play() {
         if isPlaying {
             player?.stop()
         } else {
@@ -61,46 +57,46 @@ final class PlayerViewModel: ObservableObject {
         }
     }
     
-    public func stop() {
+    func stop() {
         isPlaying = false
         setTime(value: currentDuration)
         player?.stop()
     }
     
     
-    public func nextSong() {
+    func nextSong() {
         numberCurrentSong += Constants.oneIntNumber
         setupSong(number: numberCurrentSong)
         player?.play()
     }
     
-    public func backSong() {
+    func backSong() {
         numberCurrentSong -= Constants.oneIntNumber
         setupSong(number: numberCurrentSong)
         player?.play()
     }
     
-    public func getSongName() -> String {
+    func getSongName() -> String {
         guard numberCurrentSong < songs.count else { return Constants.emptyString }
         return songs[numberCurrentSong].name
     }
     
-    public func getAlbomImageName() -> String {
+    func getAlbomImageName() -> String {
         guard numberCurrentSong < songs.count else { return Constants.emptyString }
         return songs[numberCurrentSong].albumImageName
     }
     
-    public func getAlbumName() -> String {
+    func getAlbumName() -> String {
         guard numberCurrentSong < songs.count else { return Constants.emptyString }
         return songs[numberCurrentSong].albumName
     }
         
-    public func getPastTime() -> Date {
+    func getPastTime() -> Date {
         let progressong = Date(timeIntervalSince1970: Double(currentDuration))
        return progressong
     }
     
-    public func getTimeLeft() -> Date {
+    func getTimeLeft() -> Date {
         let progressong = Date(timeIntervalSince1970: Double(maxDuration - currentDuration))
        return progressong
     }
