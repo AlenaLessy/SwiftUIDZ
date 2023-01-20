@@ -1,13 +1,10 @@
-//
 //  ContentView.swift
 //  SwiftUIDZ
-//
 //  Created by Алена Панченко on 17.01.2023.
-//
 
 import SwiftUI
 
-/// Шоурум
+///  Экран Шоурума
 struct ContentView: View {
     
     // MARK: - Private Constants
@@ -16,8 +13,8 @@ struct ContentView: View {
         static let salonTypes = ["Кожа-рожа", "Тряпично-практично", "Странный деревянный"]
         static let showroomNameText = "Тачилы"
         static let emptyString = ""
-        static let buiText = "Купить"
-        static let buiButtonAlertTitleText = "Поздравляем!"
+        static let buyText = "Купить"
+        static let buyButtonAlertTitleText = "Поздравляем!"
         static let buiButtonAlertMessageText = "Вы купили ведро"
         static let salonPickerText = "Салон"
         static let carPickerText = "Car"
@@ -49,7 +46,6 @@ struct ContentView: View {
         static let shareButtonWidthNumber: CGFloat = 130
         static let shareButtonHeightNumber: CGFloat = 25
         static let shareButtonCornerRadiusNumber: CGFloat = 10
-        
     }
     
     // MARK: - Public Properties
@@ -72,7 +68,7 @@ struct ContentView: View {
                     }
                 }
                 HStack(spacing: Constants.spacingButton) {
-                    buiButton
+                    buyButton
                     shareButton
                 }
             }
@@ -87,7 +83,6 @@ struct ContentView: View {
             toning: "Аквариум",
             enginePower: 74,
             price: 25000),
-        
         Car(name: "Не пешком",
             imageName: "22",
             toning: "Гаишники попутают",
@@ -108,7 +103,7 @@ struct ContentView: View {
     @State private var selectionCarPicker = Constants.zeroNumber
     @State private var selectionSalonPicker = Constants.zeroNumber
     @State private var isShare = false
-    @State private var isBui = false
+    @State private var isBuy = false
     @State private var isSteeringWheel = false
     @State private var underestimate = Constants.underestimateNumber
 
@@ -121,14 +116,14 @@ struct ContentView: View {
             .foregroundColor(.red)
     }
         
-    private var buiButton: some View {
+    private var buyButton: some View {
         return Button {
-            isBui = true
+            isBuy = true
         } label: {
-            Text(Constants.buiText).font(.system(size: Constants.buiButtonFontSize))
+            Text(Constants.buyText).font(.system(size: Constants.buiButtonFontSize))
                 .padding()
-        }.alert(isPresented: $isBui) {
-            Alert(title: Text(Constants.buiButtonAlertTitleText), message: Text(Constants.buiButtonAlertMessageText), primaryButton: .cancel(), secondaryButton: .default(Text(Constants.buiButtonAlertDefaultText)))
+        }.alert(isPresented: $isBuy) {
+            Alert(title: Text(Constants.buyButtonAlertTitleText), message: Text(Constants.buiButtonAlertMessageText), primaryButton: .cancel(), secondaryButton: .default(Text(Constants.buiButtonAlertDefaultText)))
         }.frame(width: Constants.buiButtonWidthNumber, height: Constants.buiButtonHeightNumber)
             .foregroundColor(.black)
             .background(Color.red)
@@ -164,8 +159,7 @@ struct ContentView: View {
         .padding()
     }
     
-    private var
-    steeringWheelText: some View {
+    private var steeringWheelText: some View {
         Toggle(Constants.steeringWheelText, isOn: $isSteeringWheel).colorMultiply(.red)
     }
         
