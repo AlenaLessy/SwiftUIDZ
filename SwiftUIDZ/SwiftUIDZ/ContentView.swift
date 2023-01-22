@@ -54,22 +54,22 @@ struct ContentView: View {
         NavigationView {
             VStack(spacing: Constants.spacingVStack) {
                 showroomNameText.offset(y: Constants.showroomNameTextOffset)
-                carImage
-                carPicker
+                carImageView
+                carPickerView
                 Form {
-                    priceText
-                    enginePowerText
-                    toningText
-                    steeringWheelText
-                    salonPicker
+                    priceTextView
+                    enginePowerTextView
+                    toningTextView
+                    steeringWheelTextView
+                    salonPickerView
                     HStack {
-                        underestimateText
-                        underestimateSlier
+                        underestimateTextView
+                        underestimateSlierView
                     }
                 }
                 HStack(spacing: Constants.spacingButton) {
-                    buyButton
-                    shareButton
+                    buyButtonView
+                    shareButtonView
                 }
             }
         }
@@ -77,33 +77,12 @@ struct ContentView: View {
     
     // MARK: Private Properties
     
-    private let cars = [
-        Car(name: "Пятера",
-            imageName: "11",
-            toning: "Аквариум",
-            enginePower: 74,
-            price: 25000),
-        Car(name: "Не пешком",
-            imageName: "22",
-            toning: "Гаишники попутают",
-            enginePower: 82,
-            price: 30000),
-        Car(name: "Дедушкина",
-            imageName: "33",
-            toning: "Аквариум",
-            enginePower: 123,
-            price: 15000),
-        Car(name: "Феррари",
-            imageName: "44",
-            toning: "Аквариум",
-            enginePower: 162,
-            price: 100000)
-    ]
+    private let cars: [Car] = Car.getCars()
     
     @State private var selectionCarPicker = Constants.zeroNumber
     @State private var selectionSalonPicker = Constants.zeroNumber
-    @State private var isShare = false
-    @State private var isBuy = false
+    @State private var isSharePressed = false
+    @State private var isBuyPressed = false
     @State private var isSteeringWheel = false
     @State private var underestimate = Constants.underestimateNumber
 
@@ -116,21 +95,23 @@ struct ContentView: View {
             .foregroundColor(.red)
     }
         
-    private var buyButton: some View {
+    private var buyButtonView: some View {
         return Button {
-            isBuy = true
+            isBuyPressed = true
         } label: {
             Text(Constants.buyText).font(.system(size: Constants.buiButtonFontSize))
                 .padding()
-        }.alert(isPresented: $isBuy) {
+        }
+        .alert(isPresented: $isBuyPressed) {
             Alert(title: Text(Constants.buyButtonAlertTitleText), message: Text(Constants.buiButtonAlertMessageText), primaryButton: .cancel(), secondaryButton: .default(Text(Constants.buiButtonAlertDefaultText)))
-        }.frame(width: Constants.buiButtonWidthNumber, height: Constants.buiButtonHeightNumber)
+        }
+        .frame(width: Constants.buiButtonWidthNumber, height: Constants.buiButtonHeightNumber)
             .foregroundColor(.black)
             .background(Color.red)
             .cornerRadius(Constants.buiButtonCornerRadiusNumber)
     }
     
-    private var carImage: some View {
+    private var carImageView: some View {
         Image(cars[selectionCarPicker].imageName)
             .resizable()
             .frame(width: Constants.carImageWidthNumber,
@@ -139,7 +120,7 @@ struct ContentView: View {
             
     }
     
-    private var salonPicker: some View {
+    private var salonPickerView: some View {
         Picker(Constants.salonPickerText, selection: $selectionSalonPicker) {
             ForEach(Constants.zeroNumber ..< salonTypes.count) {
                                  Text(salonTypes[$0])
@@ -148,7 +129,7 @@ struct ContentView: View {
                          .pickerStyle(.navigationLink)
                      }
             
-    private var carPicker: some View {
+    private var carPickerView: some View {
         Picker(Constants.carPickerText, selection: $selectionCarPicker) {
             ForEach(Constants.zeroNumber ..< cars.count) {
                 Text(cars[$0].name)
@@ -159,40 +140,40 @@ struct ContentView: View {
         .padding()
     }
     
-    private var steeringWheelText: some View {
+    private var steeringWheelTextView: some View {
         Toggle(Constants.steeringWheelText, isOn: $isSteeringWheel).colorMultiply(.red)
     }
         
-    private var priceText: some View {
+    private var priceTextView: some View {
         Text("\(Constants.priceText) \(cars[selectionCarPicker].price) \(Constants.currencyText)")
     }
     
-    private var enginePowerText: some View {
+    private var enginePowerTextView: some View {
         Text("\(Constants.enginePowerText) \(cars[selectionCarPicker].enginePower) \(Constants.numberEnginePowerText)")
     }
     
-    private var toningText: some View {
+    private var toningTextView: some View {
         Text("\(Constants.toningText) \(cars[selectionCarPicker].toning)")
     }
     
-    private var underestimateText: some View {
+    private var underestimateTextView: some View {
         Text(Constants.underestimateText)
     }
     
-    private var underestimateSlier: some View {
+    private var underestimateSlierView: some View {
         Slider(value: $underestimate, in: Constants.underestimateRange)
     }
 
-    private var shareButton: some View {
+    private var shareButtonView: some View {
         Button {
-            isShare = true
+            isSharePressed = true
         } label: {
             Text(Constants.shareButtonTitleText).font(.system(size: Constants.shareButtonTitleFontNumber))
                 .padding().frame(width: Constants.shareButtonWidthNumber, height: Constants.shareButtonHeightNumber)
                 .foregroundColor(.black)
                 .background(Color.red)
                 .cornerRadius(Constants.shareButtonCornerRadiusNumber)
-        }.sheet(isPresented: $isShare) {
+        }.sheet(isPresented: $isSharePressed) {
             let info = "\(Constants.infoActivityViewText) \(cars[selectionCarPicker].name)"
             ActivityViewController(items: [info])
         }
