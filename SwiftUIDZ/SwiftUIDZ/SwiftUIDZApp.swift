@@ -1,9 +1,6 @@
-//
 //  SwiftUIDZApp.swift
 //  SwiftUIDZ
-//
 //  Created by Алена Панченко on 17.01.2023.
-//
 
 import SwiftUI
 
