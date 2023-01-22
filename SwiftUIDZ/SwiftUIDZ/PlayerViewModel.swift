@@ -4,7 +4,6 @@
 
 import AVFoundation
 import SwiftUI
-import Foundation
 
 /// Вью-модель для плеера
 final class PlayerViewModel: ObservableObject {

@@ -2,7 +2,6 @@
 //  SwiftUIDZ
 //  Created by Алена Панченко on 17.01.2023.
 
-import Foundation
 import SwiftUI
 
 /// Плеер
@@ -64,10 +63,10 @@ struct ContentView: View {
     
 // MARK: - Private Properties
     
-    @ObservedObject private var playerViewModel = PlayerViewModel()
+    @StateObject private var playerViewModel = PlayerViewModel()
     
-    @State private var isShareButton = false
-    @State private var isDownloadButton = false
+    @State private var isShareButtonPressed = false
+    @State private var isDownloadButtonPressed = false
     
     private var imageName = Constants.playSystemImageName
 
@@ -159,7 +158,7 @@ struct ContentView: View {
     
     private var shareSongButton: some View {
         Button {
-            isShareButton = true
+            isShareButtonPressed = true
         } label: {
             Text(Constants.shareSongButtonTitleText)
                 .foregroundColor(.white)
@@ -167,7 +166,7 @@ struct ContentView: View {
         .frame(width: Constants.buttonWidthNumber, height: Constants.buttonHeightNumber)
         .cornerRadius(Constants.buttonCornerRadiusNumber)
         .background(.blue)
-        .alert(isPresented: $isShareButton) {
+        .alert(isPresented: $isShareButtonPressed) {
             Alert(title: Text(Constants.shareSongButtonAlertTitleText),
                   primaryButton: .default(Text(Constants.shareSongAlertButtonYesText)),
                   secondaryButton: .default(Text(Constants.shareSongAlertButtonNoText)))
@@ -176,7 +175,7 @@ struct ContentView: View {
     
     private var downloadSongButton: some View {
         Button {
-            isDownloadButton = true
+            isDownloadButtonPressed = true
         } label: {
             Text(Constants.downloadSongButtonTitleText)
                 .foregroundColor(.white)
@@ -184,7 +183,7 @@ struct ContentView: View {
         .frame(width: Constants.buttonWidthNumber, height: Constants.buttonHeightNumber)
         .cornerRadius(Constants.buttonCornerRadiusNumber)
         .background(.blue)
-        .actionSheet(isPresented: $isDownloadButton) {
+        .actionSheet(isPresented: $isDownloadButtonPressed) {
             ActionSheet(title: Text("\(playerViewModel.getSongName()) \(Constants.actionSheetTitleText)"))
         }
     }
