@@ -124,7 +124,7 @@ struct VPNView: View {
     }
     
     private var ratesTextView: Text {
-        return Text("\(Constants.rateTextDescriptionText) \(ratesViewModel.getDaysOfSubscriptionNumber()) \(Constants.daysText)")
+        Text("\(Constants.rateTextDescriptionText) \(ratesViewModel.getDaysOfSubscriptionNumber()) \(Constants.daysText)")
     }
     
     // MARK: - Private Methods
@@ -135,7 +135,7 @@ struct VPNView: View {
     }
     
     private func makeTrailingTextView(text: String) -> some View {
-        return Text(text)
+        Text(text)
             .frame(width: Constants.widthTextNumber, alignment: .trailing)
             .bold()
     }

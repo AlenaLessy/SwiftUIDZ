@@ -5,7 +5,7 @@
 //  Created by Алена Панченко on 22.01.2023.
 //
 
-import Foundation
+import SwiftUI
 
 /// Вью модель экрана подключения ВПН
 final class VPNViewModel: ObservableObject {

@@ -5,7 +5,6 @@
 //  Created by Алена Панченко on 22.01.2023.
 //
 
-import Foundation
 import SwiftUI
 
 /// Большой переключатель
@@ -39,7 +38,6 @@ struct BigToggle: ToggleStyle {
                     .frame(width: width, height: height)
                     .foregroundColor(configuration.isOn ? .green : .gray)
               Circle()
-              
                   .frame(width: height - Constants.circleDecreaseNumber, height: height - Constants.circleDecreaseNumber)
                   .padding(Constants.circleIndentNumber)
                   .foregroundColor(.white)
@@ -48,8 +46,8 @@ struct BigToggle: ToggleStyle {
                             configuration.$isOn.wrappedValue.toggle()
                         }
                 }
-              
             }
-        }.offset(y: Constants.toggleOffsetYNumber)
+        }
+        .offset(y: Constants.toggleOffsetYNumber)
     }
 }

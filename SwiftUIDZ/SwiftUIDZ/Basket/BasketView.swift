@@ -36,17 +36,17 @@ struct BasketView: View {
     @EnvironmentObject private var ratesViewModel: RatesViewModel
     
     private var selectedRateTextView: Text {
-        return Text(Constants.selectedRateText)
+        Text(Constants.selectedRateText)
             .font(.largeTitle)
     }
     
     private var descriptionTextView: Text {
-        return Text(ratesViewModel.getSelectedRateDescription())
+        Text(ratesViewModel.getSelectedRateDescription())
             .font(.title)
     }
     
     private var buyButtonView: some View {
-        return Button(Constants.buyButtonTitleText, action: {
+        Button(Constants.buyButtonTitleText, action: {
             ratesViewModel.isPurchasePaymentButtonPressed = true
         })
         .alert(isPresented: $ratesViewModel.isPurchasePaymentButtonPressed) {

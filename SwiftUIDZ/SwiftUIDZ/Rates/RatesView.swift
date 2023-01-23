@@ -68,12 +68,12 @@ struct RatesView: View {
     @EnvironmentObject private var ratesViewModel: RatesViewModel
     
     private var privacyMattersTextView: Text {
-        return Text(Constants.privacyMattersText)
+        Text(Constants.privacyMattersText)
             .font(.title)
     }
     
     private var protectActivitiesTextView: some View {
-        return Text(Constants.protectActivitiesWithVPNPlusText)
+        Text(Constants.protectActivitiesWithVPNPlusText)
             .font(.title2)
             .offset(y: Constants.protectActivitiesTextOffsetYNumber)
     }
@@ -81,7 +81,7 @@ struct RatesView: View {
     // MARK: - Private Methods
     
     private func makeBuyButtonView(day: Int) -> some View {
-        return Button(Constants.buttonTitleText) {
+        Button(Constants.buttonTitleText) {
             ratesViewModel.daysOfSubscriptionNumber = day
             ratesViewModel.badge = Constants.badgeNumber
         }.padding(Constants.makeBuyButtonPadding)
@@ -91,12 +91,12 @@ struct RatesView: View {
     }
     
     private func makeRateImageView(imageName: String) -> some View {
-        return Image(imageName)
+        Image(imageName)
             .resizable()
             .frame(width: Constants.makeRateImageWidthAndHeight, height: Constants.makeRateImageWidthAndHeight)
     }
     
     private func makeRateDescriptionTextView(description: String) -> Text {
-        return Text(description)
+        Text(description)
     }
 }
