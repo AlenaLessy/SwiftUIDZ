@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		5746F8F2297698A400FB06A5 /* SwiftUIDZApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */; };
-		5746F8F4297698A400FB06A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* ContentView.swift */; };
+		5746F8F4297698A400FB06A5 /* VPNTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* VPNTabView.swift */; };
 		5746F8F6297698A500FB06A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F5297698A500FB06A5 /* Assets.xcassets */; };
 		5746F8F9297698A500FB06A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */; };
+		57615E8D297D861B00452907 /* BigToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57615E8C297D861B00452907 /* BigToggle.swift */; };
+		57615E91297DA34F00452907 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57615E90297DA34F00452907 /* Country.swift */; };
+		57615E93297DB3D100452907 /* VPNView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57615E92297DB3D100452907 /* VPNView.swift */; };
+		57B3AA67297DD25600B6389F /* RatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3AA66297DD25600B6389F /* RatesView.swift */; };
+		57B3AA69297DD6EA00B6389F /* VPNViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3AA68297DD6EA00B6389F /* VPNViewModel.swift */; };
+		57B3AA6D297E452800B6389F /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3AA6C297E452800B6389F /* BasketView.swift */; };
+		57B3AA6F297E4CA900B6389F /* RatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3AA6E297E4CA900B6389F /* RatesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,11 +40,18 @@
 /* Begin PBXFileReference section */
 		5746F8EE297698A400FB06A5 /* SwiftUIDZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIDZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDZApp.swift; sourceTree = "<group>"; };
-		5746F8F3297698A400FB06A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5746F8F3297698A400FB06A5 /* VPNTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNTabView.swift; sourceTree = "<group>"; };
 		5746F8F5297698A500FB06A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5746F8FE297698A500FB06A5 /* SwiftUIDZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F908297698A500FB06A5 /* SwiftUIDZUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57615E8C297D861B00452907 /* BigToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigToggle.swift; sourceTree = "<group>"; };
+		57615E90297DA34F00452907 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		57615E92297DB3D100452907 /* VPNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNView.swift; sourceTree = "<group>"; };
+		57B3AA66297DD25600B6389F /* RatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesView.swift; sourceTree = "<group>"; };
+		57B3AA68297DD6EA00B6389F /* VPNViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNViewModel.swift; sourceTree = "<group>"; };
+		57B3AA6C297E452800B6389F /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
+		57B3AA6E297E4CA900B6389F /* RatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57413001297E590E002A31F3 /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+				57B3AA6C297E452800B6389F /* BasketView.swift */,
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		57413002297E6551002A31F3 /* VPN */ = {
+			isa = PBXGroup;
+			children = (
+				57B3AA68297DD6EA00B6389F /* VPNViewModel.swift */,
+				57615E92297DB3D100452907 /* VPNView.swift */,
+			);
+			path = VPN;
+			sourceTree = "<group>";
+		};
 		5746F8E5297698A400FB06A5 = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +118,12 @@
 			isa = PBXGroup;
 			children = (
 				5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */,
-				5746F8F3297698A400FB06A5 /* ContentView.swift */,
+				57615E8C297D861B00452907 /* BigToggle.swift */,
+				57615E90297DA34F00452907 /* Country.swift */,
+				5746F8F3297698A400FB06A5 /* VPNTabView.swift */,
+				57413002297E6551002A31F3 /* VPN */,
+				57B3AA70297E4CD400B6389F /* Rates */,
+				57413001297E590E002A31F3 /* Basket */,
 				5746F8F5297698A500FB06A5 /* Assets.xcassets */,
 				5746F8F7297698A500FB06A5 /* Preview Content */,
 			);
@@ -100,6 +136,15 @@
 				5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		57B3AA70297E4CD400B6389F /* Rates */ = {
+			isa = PBXGroup;
+			children = (
+				57B3AA66297DD25600B6389F /* RatesView.swift */,
+				57B3AA6E297E4CA900B6389F /* RatesViewModel.swift */,
+			);
+			path = Rates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5746F8F4297698A400FB06A5 /* ContentView.swift in Sources */,
+				57B3AA6F297E4CA900B6389F /* RatesViewModel.swift in Sources */,
+				57B3AA6D297E452800B6389F /* BasketView.swift in Sources */,
+				57615E91297DA34F00452907 /* Country.swift in Sources */,
+				5746F8F4297698A400FB06A5 /* VPNTabView.swift in Sources */,
+				57B3AA67297DD25600B6389F /* RatesView.swift in Sources */,
+				57B3AA69297DD6EA00B6389F /* VPNViewModel.swift in Sources */,
+				57615E93297DB3D100452907 /* VPNView.swift in Sources */,
+				57615E8D297D861B00452907 /* BigToggle.swift in Sources */,
 				5746F8F2297698A400FB06A5 /* SwiftUIDZApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
