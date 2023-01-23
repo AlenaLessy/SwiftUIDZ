@@ -24,8 +24,8 @@ struct BigToggle: ToggleStyle {
     
     // MARK: - Private Properties
     
-    let width: CGFloat = Constants.toggleWidthNumber
-    let height: CGFloat = Constants.toggleHeightNumber
+   private let width: CGFloat = Constants.toggleWidthNumber
+   private let height: CGFloat = Constants.toggleHeightNumber
     
     // MARK: - Public Properties
     
