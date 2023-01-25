@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct SwiftUIDZApp: App {
+//    
+//    init() {
+//        UINavigationBar.appearance().backgroundColor = .orange
+//    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartScreenView()
         }
     }
 }
+
