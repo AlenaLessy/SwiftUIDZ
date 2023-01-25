@@ -94,6 +94,7 @@
 		573737AC298103F90015E592 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5741300D2980ACFC002A31F3 /* RoundedCorner.swift */,
 				573737AA2980FF870015E592 /* KeyBoardResponder.swift */,
 				5741300B2980A441002A31F3 /* RedGradientButtonView.swift */,
 				574EEAB52980D40400CA8903 /* PurpleTextButtonView.swift */,
@@ -168,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */,
-				5741300D2980ACFC002A31F3 /* RoundedCorner.swift */,
 				573737AC298103F90015E592 /* Helpers */,
 				573737B2298109370015E592 /* Start */,
 				573737AE298107E70015E592 /* Login */,
