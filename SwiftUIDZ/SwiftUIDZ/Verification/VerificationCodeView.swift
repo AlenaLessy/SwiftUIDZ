@@ -112,18 +112,21 @@ struct VerificationCodeView: View {
                     verificationViewModel.oneNumberVerificationTextFieldViewText = verificationViewModel.getSMSText(newChars: newChars)
                     twoNumberVerificationTextFieldViewFocus = true
                 }
+            
             OneNumberTextField(promt: Constants.placeholderTextFieldsText, text: $verificationViewModel.twoNumberVerificationTextFieldViewText)
                 .focused($twoNumberVerificationTextFieldViewFocus)
                 .onChange(of: verificationViewModel.twoNumberVerificationTextFieldViewText) { newChars in
                     verificationViewModel.twoNumberVerificationTextFieldViewText = verificationViewModel.getSMSText(newChars: newChars)
                     threeNumberVerificationTextFieldViewFocus = true
                 }
+            
             OneNumberTextField(promt: Constants.placeholderTextFieldsText, text: $verificationViewModel.threeNumberVerificationTextFieldViewText)
                 .focused($threeNumberVerificationTextFieldViewFocus)
                 .onChange(of: verificationViewModel.threeNumberVerificationTextFieldViewText) { newChars in
                     verificationViewModel.threeNumberVerificationTextFieldViewText = verificationViewModel.getSMSText(newChars: newChars)
                     fourNumberVerificationTextFieldViewFocus = true
                 }
+            
             OneNumberTextField(promt: Constants.placeholderTextFieldsText, text: $verificationViewModel.fourNumberVerificationTextFieldViewText)
                 .focused($fourNumberVerificationTextFieldViewFocus)
                 .onChange(of: verificationViewModel.fourNumberVerificationTextFieldViewText) { newChars in

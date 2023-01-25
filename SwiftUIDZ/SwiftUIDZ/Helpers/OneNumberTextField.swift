@@ -9,7 +9,6 @@ import SwiftUI
 
 struct OneNumberTextField: View {
     
-    
     // MARK: - Private Constants
     
     private enum Constants {

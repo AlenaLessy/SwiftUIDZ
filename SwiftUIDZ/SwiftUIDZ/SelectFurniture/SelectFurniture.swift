@@ -151,7 +151,7 @@ struct SelectFurnitureView: View {
     }
 }
 
-/// PreviewProvider
+/// Превью провайдер
 struct ContentView: PreviewProvider {
     static var previews: some View {
         SelectFurnitureView()

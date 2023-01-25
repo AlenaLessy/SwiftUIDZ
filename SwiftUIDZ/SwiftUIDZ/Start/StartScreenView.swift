@@ -39,14 +39,16 @@ struct StartScreenView: View {
             VStack {
                 onlineFurnitureTextView
                 asyncImageView
-                Spacer().frame(height: Constants.spacerFrameHeightNumber)
+                Spacer()
+                    .frame(height: Constants.spacerFrameHeightNumber)
                 getStartedButtonView
                 VStack {
                     dontHaveAccountTextView
                     NavigationLink(destination: LoginView(), isActive: $startScreenViewModel.issingInButtonPressed, label: { EmptyView()})
                     NavigationLink(destination: SelectFurnitureView(), isActive: $startScreenViewModel.isgetStartedPressed, label: { EmptyView()})
                     singInHereButtonView
-                }.offset(y: Constants.vStackOffsetYNumber)
+                }
+                .offset(y: Constants.vStackOffsetYNumber)
             }
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(

@@ -34,7 +34,6 @@ struct LoginView: View {
         static let maxPasswordSymbols = 15
         static let cornerRadiusValue: CGFloat = 35
         static let cornerRadiusPlusThreeValue: CGFloat = 38
-        
     }
     
     // MARK: - Public Properties
@@ -83,15 +82,10 @@ struct LoginView: View {
             .focused($isPhoneNumberTextFieldFocused)
             .onChange(of: loginViewModel.phoneNumberTextFieldText) { newValue in
                 loginViewModel.formatterNumberStyle(text: &loginViewModel.phoneNumberTextFieldText, newValue: newValue)
-                if newValue.count <= Constants.maxPhoneSymbols {
-                    loginViewModel.LastPhoneNumberTextFieldText = loginViewModel.phoneNumberTextFieldText
-                }
+                loginViewModel.maximumCharacterPhoneLimit(newValue: newValue)
                 if newValue.count == Constants.maxPhoneSymbols {
                     isPhoneNumberTextFieldFocused = false
                     isPasswordTextFieldFocused = true
-                }
-                else {
-                    loginViewModel.phoneNumberTextFieldText = loginViewModel.LastPhoneNumberTextFieldText
                 }
             }
             .textFieldStyle(.roundedBorder)
@@ -116,11 +110,7 @@ struct LoginView: View {
                 .textFieldStyle(.plain)
                 .focused($isPasswordTextFieldFocused)
                 .onChange(of: loginViewModel.passwordTextFieldText) { newValue in
-                    if newValue.count <= Constants.maxPasswordSymbols {
-                    loginViewModel.LastPhoneNumberTextFieldText = loginViewModel.passwordTextFieldText
-                } else {
-                    loginViewModel.passwordTextFieldText = loginViewModel.LastPhoneNumberTextFieldText
-                }
+                    loginViewModel.maximumCharacterPassword(newValue: newValue)
             }
             .textFieldStyle(.roundedBorder)
             Divider()
@@ -145,11 +135,7 @@ struct LoginView: View {
     
     private var singUpButtonView: some View {
         RedGradientButtonView(action: {
-            if loginViewModel.passwordTextFieldText.count < Constants.minPasswordSymbols || loginViewModel.passwordTextFieldText.count >= Constants.maxPasswordSymbols {
-                loginViewModel.isPasswordLengthMatch = true
-            } else {
-                loginViewModel.isTransitionToSelectFurniture = true
-            }
+            loginViewModel.examinationPassword()
         }, label: Constants.singUpButtonTitleText, offset: 50)
         .alert(isPresented: $loginViewModel.isPasswordLengthMatch) {
             Alert(title: Text(Constants.singUpButtonAlertTitleText), message: Text(Constants.singUpButtonAlertMessageText) , dismissButton: .cancel())
