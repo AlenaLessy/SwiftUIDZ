@@ -25,6 +25,8 @@ struct VerificationCodeView: View {
         static let sendSMSAgainAlertMessageText = "Fill in from message"
         static let sendSMSAgainAlertOkButtonTitleText = "Ok"
         static let placeholderTextFieldsText = "0"
+        static let toolBarItemText = "Verification"
+        static let chevronLeftSystemImageName = "chevron.left"
         static let lengthSMSCodeNumber = 4
         static let firstSMSCodeNumber = 0
         static let secondSMSCodeNumber = 1
@@ -61,11 +63,22 @@ struct VerificationCodeView: View {
             threeNumberVerificationTextFieldViewFocus = false
             fourNumberVerificationTextFieldViewFocus = false
         }
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text(Constants.toolBarItemText)
+                            .font(.title)
+                            .foregroundColor(.white)
+                            .bold()
+                    }
+                }
+                .navigationBarBackButtonHidden()
+                .navigationBarItems(leading: backButtonView)
     }
     
     // MARK: - Private Properties
     
+    @Environment(\.presentationMode) var presentation
     @StateObject private var verificationViewModel = VerificationCodeViewModel()
     @FocusState private var oneNumberVerificationTextFieldViewFocus: Bool
     @FocusState private var twoNumberVerificationTextFieldViewFocus: Bool
@@ -126,7 +139,6 @@ struct VerificationCodeView: View {
                      total: Double(verificationViewModel.progressViewMaxCountNumber))
         .padding(.horizontal, 50)
         .tint(.yellow)
-        
     }
     
     private var continueButtonView: some View {
@@ -165,7 +177,8 @@ struct VerificationCodeView: View {
     private var checkTheSMSTextView: Text {
         return Text(Constants.checkTheSMSText)
             .font(.system(size: 25))
-            .font(Font.headline.weight(.bold))
+            .font(.largeTitle)
+            .bold()
     }
     
     private var messageGetVerificationCodeTextView: some View {
@@ -178,5 +191,16 @@ struct VerificationCodeView: View {
         return Text(Constants.didReceiveSmsText)
             .font(.system(size: 18))
             .offset(y: 50)
+    }
+    
+    private var backButtonView: some View {
+        Button {
+            presentation.wrappedValue.dismiss()
+        } label: {
+            Image(systemName: Constants.chevronLeftSystemImageName)
+                .resizable()
+                .frame(width: 20, height: 30)
+                .foregroundColor(.white)
+        }
     }
 }
