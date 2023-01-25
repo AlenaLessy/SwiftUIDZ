@@ -63,13 +63,9 @@ struct VerificationCodeView: View {
             threeNumberVerificationTextFieldViewFocus = false
             fourNumberVerificationTextFieldViewFocus = false
         }
-        .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        Text(Constants.toolBarItemText)
-                            .font(.title)
-                            .foregroundColor(.white)
-                            .bold()
+                        toolbarVerificationTitleTextView
                     }
                 }
                 .navigationBarBackButtonHidden()
@@ -205,5 +201,12 @@ struct VerificationCodeView: View {
                 .frame(width: 20, height: 30)
                 .foregroundColor(.white)
         }
+    }
+    
+    private var toolbarVerificationTitleTextView: Text {
+        Text(Constants.toolBarItemText)
+            .font(.title)
+            .foregroundColor(.white)
+            .bold()
     }
 }
