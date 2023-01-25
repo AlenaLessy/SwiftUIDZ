@@ -67,6 +67,7 @@ struct LoginView: View {
     // MARK: - Private Properties
     
     @StateObject private var loginViewModel = LoginViewModel()
+    
     @FocusState private var isPhoneNumberTextFieldFocused: Bool
     @FocusState private var isPasswordTextFieldFocused: Bool
     
@@ -119,7 +120,7 @@ struct LoginView: View {
     }
     
     private var forgotPasswordButtonView: some View {
-        PurpleTextButtonView(action: {
+        PurpleTextButtonView(actionHandler: {
             loginViewModel.isForgotPasswordButtonViewIsPressed = true
         }, label: Constants.forgotPasswordButtonViewTitleText, offset: -20)
         .alert(isPresented: $loginViewModel.isForgotPasswordButtonViewIsPressed) {
@@ -128,13 +129,13 @@ struct LoginView: View {
     }
     
     private var checkVerificationButtonView: some View {
-        RedGradientButtonView(action: {
+        RedGradientButtonView(actionHandler: {
             loginViewModel.isCheckVerificationPressed = true
         }, label: Constants.checkVerificationButtonTitleText, offset: 30)
     }
     
     private var singUpButtonView: some View {
-        RedGradientButtonView(action: {
+        RedGradientButtonView(actionHandler: {
             loginViewModel.examinationPassword()
         }, label: Constants.singUpButtonTitleText, offset: 50)
         .alert(isPresented: $loginViewModel.isPasswordLengthMatch) {
@@ -188,12 +189,5 @@ struct LoginView: View {
                     .font(Font.headline.weight(.bold))
             }
         }
-    }
-}
-
-/// Модификатор закругления 1 угла
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners) )
     }
 }

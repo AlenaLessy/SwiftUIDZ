@@ -75,15 +75,18 @@ struct VerificationCodeView: View {
     // MARK: - Private Properties
     
     @Environment(\.presentationMode) var presentation
+    
     @StateObject private var verificationViewModel = VerificationCodeViewModel()
+    
     @FocusState private var oneNumberVerificationTextFieldViewFocus: Bool
     @FocusState private var twoNumberVerificationTextFieldViewFocus: Bool
     @FocusState private var threeNumberVerificationTextFieldViewFocus: Bool
     @FocusState private var fourNumberVerificationTextFieldViewFocus: Bool
+    
     @State private var randomCode = Constants.emptyString
     
     private var sendSMSAgainButtonView: some View {
-        PurpleTextButtonView(action: {
+        PurpleTextButtonView(actionHandler: {
             verificationViewModel.isSendSMSAgainButtonViewPressed = true
             randomCode = verificationViewModel.getRandomSMSCode()
         }, label: Constants.sendSMSAgainButtonViewTitleText, offset: 10)
@@ -141,9 +144,9 @@ struct VerificationCodeView: View {
     }
     
     private var continueButtonView: some View {
-        RedGradientButtonView(action: {
+        RedGradientButtonView(actionHandler: {
             verificationViewModel.isContinueButtonPressed = true
-            verificationViewModel.startProgressView()
+            verificationViewModel.startProgress()
         }, label: Constants.continueButtonViewTitleText, offset: 50)
         .actionSheet(isPresented: $verificationViewModel.isContinueButtonPressed, content: {
             ActionSheet(title: Text(Constants.continueButtonActionSheetTitleText))

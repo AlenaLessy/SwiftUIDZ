@@ -21,7 +21,7 @@ final class StartScreenViewModel: ObservableObject {
     
     // MARK: - Public Methods
     
-    func getRandomFurnitureImage() -> String {
+    func getRandomFurnitureImageString() -> String {
         let randomIndex = Int(arc4random_uniform(UInt32(furnitures.count)))
         return furnitures[randomIndex].imageURLString
     }

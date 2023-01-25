@@ -62,7 +62,7 @@ struct StartScreenView: View {
     @StateObject private var startScreenViewModel = StartScreenViewModel()
     
     private var getStartedButtonView: some View {
-        RedGradientButtonView(action: {
+        RedGradientButtonView(actionHandler: {
             startScreenViewModel.isgetStartedPressed = true
         },
                               label: Constants.getStartedButtonViewTitleText,
@@ -70,7 +70,7 @@ struct StartScreenView: View {
     }
     
     private var asyncImageView: some View {
-        AsyncImage(url: URL(string: startScreenViewModel.getRandomFurnitureImage())) { phase in
+        AsyncImage(url: URL(string: startScreenViewModel.getRandomFurnitureImageString())) { phase in
             switch phase {
             case .empty:
                 ProgressView()

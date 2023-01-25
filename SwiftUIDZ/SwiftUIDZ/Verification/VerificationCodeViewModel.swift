@@ -46,7 +46,7 @@ final class VerificationCodeViewModel: ObservableObject {
         }
     }
     
-    func startProgressView() {
+    func startProgress() {
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self else { return }
             if self.progressViewCountCurrentNumber == self.progressViewMaxCountNumber {

@@ -44,7 +44,7 @@ final class LoginViewModel: ObservableObject {
     
     // MARK: - Public Methods
     
-    func getRandomFurnitureImage() -> String {
+    func getRandomFurnitureImageString() -> String {
         let randomIndex = Int(arc4random_uniform(UInt32(furnitures.count)))
         return furnitures[randomIndex].imageURLString
     }
@@ -59,8 +59,6 @@ final class LoginViewModel: ObservableObject {
         } else if newValue.count == Constants.firstTwoNumberInPhoneNumberValue {
             text = "\(text)\(Constants.dashSymbol)"
         }
-        
-        
     }
     
     func maximumCharacterPhoneLimit(newValue: String) {

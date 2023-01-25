@@ -21,7 +21,7 @@ struct RedGradientButtonView: View {
     
     // MARK: - Public Properties
     
-    let action: () -> ()
+    let actionHandler: () -> ()
     let label: String
     let font: Font = Font.system(size: Constants.fontSizeNumber, design: .default)
     let offset: CGFloat
@@ -30,7 +30,7 @@ struct RedGradientButtonView: View {
     
     var body: some View {
         Button {
-            action()
+            actionHandler()
         } label: {
             Text(label)
                 .font(font)

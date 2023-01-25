@@ -53,6 +53,7 @@ struct SelectFurnitureView: View {
     
     @StateObject private var selectFurnitureViewModel = SelectFurnitureViewModel()
     @StateObject private var keyboardResponder = KeyboardResponder()
+    
     @FocusState private var isTextEditorFocus: Bool
     
     private var furnitureImageView: some View {
@@ -151,7 +152,6 @@ struct SelectFurnitureView: View {
     }
 }
 
-/// Превью провайдер
 struct ContentView: PreviewProvider {
     static var previews: some View {
         SelectFurnitureView()
