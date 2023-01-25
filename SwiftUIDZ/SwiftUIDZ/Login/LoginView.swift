@@ -29,8 +29,8 @@ struct LoginView: View {
         static let lightPurpleColorName = "lightPurple"
         static let darkPurpleColorName = "darkPurple"
         static let lightGrayColorName = "lightGray"
-        static let minPasswordSymbols = 15
-        static let maxPhoneSymbols = 16
+        static let minPasswordSymbols = 6
+        static let maxPhoneSymbols = 17
         static let maxPasswordSymbols = 15
         static let cornerRadiusValue: CGFloat = 35
         static let cornerRadiusPlusThreeValue: CGFloat = 38
