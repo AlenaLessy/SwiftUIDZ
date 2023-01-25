@@ -131,8 +131,8 @@
 		573737B5298109A10015E592 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
-				574130112980AF86002A31F3 /* VerificationCodeView.swift */,
 				573737B6298109B50015E592 /* VerificationCodeViewModel.swift */,
+				574130112980AF86002A31F3 /* VerificationCodeView.swift */,
 			);
 			path = Verification;
 			sourceTree = "<group>";
@@ -140,8 +140,8 @@
 		573737B829810AA30015E592 /* SelectFurniture */ = {
 			isa = PBXGroup;
 			children = (
-				574EEAB72980DE4700CA8903 /* SelectFurniture.swift */,
 				573737B929810ABE0015E592 /* SelectFurnitureViewModel.swift */,
+				574EEAB72980DE4700CA8903 /* SelectFurniture.swift */,
 			);
 			path = SelectFurniture;
 			sourceTree = "<group>";

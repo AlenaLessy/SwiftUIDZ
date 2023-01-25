@@ -10,101 +10,111 @@ import SwiftUI
 /// Стартовый экран приложения
 struct StartScreenView: View {
     
-    @StateObject var startScreenViewModel = StartScreenViewModel()
+    // MARK: - Private Constants
     
+    private enum Constants {
+        static let onlineFurnitureStoreText = "ONLINE FURNITURE STORE"
+        static let dontHaveAccountText = "Don't have an account?"
+        static let singInHereButtonTitle = "Sing in here"
+        static let getStartedButtonViewTitleText = "GET STARTED"
+        static let onlineFurnitureTextfontSizeNumber: CGFloat = 32
+        static let onlineFurnitureTextLineSpacingNumber: CGFloat = 15
+        static let spacerFrameHeightNumber: CGFloat = 100
+        static let dontHaveAccountViewFontSizeNumber: CGFloat = 20
+        static let singInHereButtonTitleFontSize: CGFloat = 32
+        static let singInHereButtonHeightNumber: CGFloat = 70
+        static let singInHereButtonWidthNumber: CGFloat = 270
+        static let vStackOffsetYNumber: CGFloat = 60
+        static let linearGradientColorRedOpacity: CGFloat = 0.8
+        static let zeroCGFloatNumber: CGFloat = 0
+        static let imageWidthAndHeightNumber: CGFloat = 200
+        static let systemImageQuestionmarkName = "questionmark"
+        
+    }
+    
+    // MARK: - Public Properties
+        
     var body: some View {
         NavigationView {
             VStack {
-                Text("ONLINE FURNITURE STORE")
-                /// одинаковые модификаторы вынести
-                    .font(.system(size: 32, design: .default))
-                    .bold()
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(15)
-                
+                onlineFurnitureTextView
                 asyncImageView
-                Spacer().frame(height: 100)
-                
+                Spacer().frame(height: Constants.spacerFrameHeightNumber)
                 getStartedButtonView
-                
-//                Button {
-//                    print("")
-//                } label: {
-//                    Text("GET STARTED")
-//
-//                    /// одинаковые модификаторы вынести
-//                        .font(.system(size: 32, design: .default))
-//                        .bold()
-//                        .foregroundColor(.white)
-//                }
-//                .frame(width: 270, height: 70)
-//                .background( LinearGradient(colors: [Color.red, Color.red.opacity(0.3)], startPoint: .bottomTrailing, endPoint: .topLeading))
-//                .cornerRadius(50)
-                
-                // label
-                VStack(spacing: 0) {
-                    Text("Don't have an account?")
-                        .foregroundColor(.white)
-                        .bold()
-                        .font(.system(size: 20, design: .default))
-                    
-                    // навигация
+                VStack {
+                    dontHaveAccountTextView
                     NavigationLink(destination: LoginView(), isActive: $startScreenViewModel.issingInButtonPressed, label: { EmptyView()})
                     NavigationLink(destination: SelectFurnitureView(), isActive: $startScreenViewModel.isgetStartedPressed, label: { EmptyView()})
-                    // button
-                    Button {
-                        startScreenViewModel.issingInButtonPressed = true
-                    } label: {
-                        Text("Sing in here")
-                            .font(.system(size: 32, design: .default))
-                            .bold()
-                            .foregroundColor(.white)
-                            .underline()
-                    }
-                    .frame(width: 270, height: 70)
-                    
-                }.offset(y: 60)
-                
+                    singInHereButtonView
+                }.offset(y: Constants.vStackOffsetYNumber)
             }
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .background(
-                LinearGradient(colors: [Color.yellow, Color.red.opacity(0.8)], startPoint: .top, endPoint: .bottom)
+                LinearGradient(colors: [Color.yellow, Color.red.opacity(Constants.linearGradientColorRedOpacity)], startPoint: .top, endPoint: .bottom)
             )
-            
         }
     }
+    
+    // MARK: - Private Properties
+    
+    @StateObject private var startScreenViewModel = StartScreenViewModel()
     
     private var getStartedButtonView: some View {
         RedGradientButtonView(action: {
             startScreenViewModel.isgetStartedPressed = true
-        }, label: "GET STARTED", offset: 0)
+        },
+                              label: Constants.getStartedButtonViewTitleText,
+                              offset: Constants.zeroCGFloatNumber)
     }
-   private var asyncImageView: some View {
+    
+    private var asyncImageView: some View {
         AsyncImage(url: URL(string: startScreenViewModel.getRandomFurnitureImage())) { phase in
-                switch phase {
-                case .empty:
-                    ProgressView()
-                        .tint(.red)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                case .failure(let error):
-                    VStack {
-                        Image(systemName: "questionmark")
-                        Text(error.localizedDescription)
-                            .font(.headline)
-                    }
-                @unknown default:
-                    fatalError()
+            switch phase {
+            case .empty:
+                ProgressView()
+                    .tint(.red)
+            case .success(let image):
+                image
+                    .resizable()
+                    .frame(width: Constants.imageWidthAndHeightNumber, height: Constants.imageWidthAndHeightNumber)
+            case .failure(let error):
+                VStack {
+                    Image(systemName: Constants.systemImageQuestionmarkName)
+                    Text(error.localizedDescription)
+                        .font(.headline)
                 }
+            @unknown default:
+                fatalError()
             }
         }
+    }
+    
+    private var onlineFurnitureTextView: some View {
+        return Text(Constants.onlineFurnitureStoreText)
+            .font(.system(size: Constants.onlineFurnitureTextfontSizeNumber, design: .default))
+            .bold()
+            .foregroundColor(.white)
+            .multilineTextAlignment(.center)
+            .lineSpacing(Constants.onlineFurnitureTextLineSpacingNumber)
+    }
+    
+    private var dontHaveAccountTextView: Text {
+        return Text(Constants.dontHaveAccountText)
+            .foregroundColor(.white)
+            .bold()
+            .font(.system(size: Constants.dontHaveAccountViewFontSizeNumber, design: .default))
+    }
+    
+    private var singInHereButtonView: some View {
+        Button {
+            startScreenViewModel.issingInButtonPressed = true
+        } label: {
+            Text(Constants.singInHereButtonTitle)
+                .font(.system(size: Constants.singInHereButtonTitleFontSize, design: .default))
+                .bold()
+                .foregroundColor(.white)
+                .underline()
+        }
+        .frame(width: Constants.singInHereButtonWidthNumber, height: Constants.singInHereButtonHeightNumber)
+    }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        StartScreenView()
-//    }
-//}

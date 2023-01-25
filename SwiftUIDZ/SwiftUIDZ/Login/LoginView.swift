@@ -10,11 +10,32 @@ import SwiftUI
 /// Экран входа в приложение
 struct LoginView: View {
     
-    @StateObject var loginViewModel = LoginViewModel()
-    @FocusState var isPhoneNumberTextFieldFocused: Bool
-    @FocusState var isPasswordTextFieldFocused: Bool
+    // MARK: - Private Constants
     
-
+    private enum Constants {
+        static let emptyString = ""
+        static let loginButtonViewLoginText = "Log In"
+        static let loginButtonViewSignUpText = "Sign up"
+        static let phoneNumberTextFieldViewPromptText = "+0 (000) 000-00-00"
+        static let passwordTextFieldViewPromptTex = "⬤⬤⬤⬤⬤⬤⬤"
+        static let passwordTextTitleText = "Password"
+        static let forgotPasswordButtonViewTitleText = "Forgot your password?"
+        static let forgotPasswordButtonViewAlertTitleText = "Служба поддержки:"
+        static let forgotPasswordButtonViewAlertMessageText = "8-800-555-35-35"
+        static let checkVerificationButtonTitleText = "Check verification"
+        static let singUpButtonTitleText = "SING UP"
+        static let singUpButtonAlertTitleText = "Ой!"
+        static let singUpButtonAlertMessageText = "Пароль должен быть не менее 6 и не более 15 символов"
+        static let lightPurpleColorName = "lightPurple"
+        static let darkPurpleColorName = "darkPurple"
+        static let lightGrayColorName = "lightGray"
+        static let minPasswordSymbols = 15
+        static let maxPhoneSymbols = 16
+        static let maxPasswordSymbols = 15
+        static let cornerRadiusValue: CGFloat = 35
+        static let cornerRadiusPlusThreeValue: CGFloat = 38
+        
+    }
     
     // MARK: - Public Properties
     
@@ -43,16 +64,17 @@ struct LoginView: View {
         }
         .navigationBarBackButtonHidden()
     }
-    
-    
-    
+  
     // MARK: - Private Properties
-
+    
+    @StateObject private var loginViewModel = LoginViewModel()
+    @FocusState private var isPhoneNumberTextFieldFocused: Bool
+    @FocusState private var isPasswordTextFieldFocused: Bool
+    
     private var phoneNumberTextFieldView: some View {
         VStack {
-            TextField("", text: $loginViewModel.phoneNumberTextFieldText, prompt: Text("+0 (000) 000-00-00")
-                .foregroundColor(.black.opacity(0.8)))
-            
+            TextField(Constants.emptyString, text: $loginViewModel.phoneNumberTextFieldText, prompt: Text(Constants.phoneNumberTextFieldViewPromptText)
+            .foregroundColor(.black.opacity(0.8)))
             .font(.system(size: 30))
             .keyboardType(.numberPad)
             .padding(.horizontal, 50)
@@ -60,11 +82,11 @@ struct LoginView: View {
             .textFieldStyle(.plain)
             .focused($isPhoneNumberTextFieldFocused)
             .onChange(of: loginViewModel.phoneNumberTextFieldText) { newValue in
-                formatterNumberStyle(text: &loginViewModel.phoneNumberTextFieldText, newValue: newValue)
-                if newValue.count <= 16 {
+                loginViewModel.formatterNumberStyle(text: &loginViewModel.phoneNumberTextFieldText, newValue: newValue)
+                if newValue.count <= Constants.maxPhoneSymbols {
                     loginViewModel.LastPhoneNumberTextFieldText = loginViewModel.phoneNumberTextFieldText
                 }
-                if newValue.count == 16 {
+                if newValue.count == Constants.maxPhoneSymbols {
                     isPhoneNumberTextFieldFocused = false
                     isPasswordTextFieldFocused = true
                 }
@@ -74,27 +96,27 @@ struct LoginView: View {
             }
             .textFieldStyle(.roundedBorder)
             Divider()
-                .padding(.horizontal, 50)
+            .padding(.horizontal, 50)
         }
     }
     
     private var passwordTextFieldView: some View {
         VStack {
-            Text("Password")
+            Text(Constants.passwordTextTitleText)
                 .font(.system(size: 20))
                 .offset(x: -100)
-            SecureField("", text: $loginViewModel.passwordTextFieldText, prompt: Text("⬤⬤⬤⬤⬤⬤⬤")
+            SecureField(Constants.emptyString, text: $loginViewModel.passwordTextFieldText, prompt: Text(Constants.passwordTextFieldViewPromptTex)
                 .font(.system(size: 17))
                 .kerning(15)
                 .foregroundColor(.gray.opacity(0.5)))
-            .font(.system(size: 30))
-            .keyboardType(.numberPad)
-            .padding(.horizontal, 50)
-            .accentColor(.black)
-            .textFieldStyle(.plain)
-            .focused($isPasswordTextFieldFocused)
-            .onChange(of: loginViewModel.passwordTextFieldText) { newValue in
-                if newValue.count <= 15 {
+                .font(.system(size: 30))
+                .keyboardType(.numberPad)
+                .padding(.horizontal, 50)
+                .accentColor(.black)
+                .textFieldStyle(.plain)
+                .focused($isPasswordTextFieldFocused)
+                .onChange(of: loginViewModel.passwordTextFieldText) { newValue in
+                    if newValue.count <= Constants.maxPasswordSymbols {
                     loginViewModel.LastPhoneNumberTextFieldText = loginViewModel.passwordTextFieldText
                 } else {
                     loginViewModel.passwordTextFieldText = loginViewModel.LastPhoneNumberTextFieldText
@@ -103,48 +125,46 @@ struct LoginView: View {
             .textFieldStyle(.roundedBorder)
             Divider()
                 .padding(.horizontal, 50)
-            
-            
         }
     }
     
     private var forgotPasswordButtonView: some View {
         PurpleTextButtonView(action: {
             loginViewModel.isForgotPasswordButtonViewIsPressed = true
-        }, label: "Forgot your password?", offset: -20)
+        }, label: Constants.forgotPasswordButtonViewTitleText, offset: -20)
         .alert(isPresented: $loginViewModel.isForgotPasswordButtonViewIsPressed) {
-            Alert(title: Text("Служба поддержки:"), message: Text("8-800-555-35-35") , dismissButton: .cancel())
+            Alert(title: Text(Constants.forgotPasswordButtonViewAlertTitleText), message: Text(Constants.forgotPasswordButtonViewAlertMessageText) , dismissButton: .cancel())
         }
     }
-   
+    
     private var checkVerificationButtonView: some View {
         RedGradientButtonView(action: {
             loginViewModel.isCheckVerificationPressed = true
-        }, label: "Check verification", offset: 30)
+        }, label: Constants.checkVerificationButtonTitleText, offset: 30)
     }
     
     private var singUpButtonView: some View {
         RedGradientButtonView(action: {
-            if loginViewModel.passwordTextFieldText.count < 6 || loginViewModel.passwordTextFieldText.count >= 15 {
+            if loginViewModel.passwordTextFieldText.count < Constants.minPasswordSymbols || loginViewModel.passwordTextFieldText.count >= Constants.maxPasswordSymbols {
                 loginViewModel.isPasswordLengthMatch = true
-            
-                
             } else {
                 loginViewModel.isTransitionToSelectFurniture = true
             }
-        }, label: "SING UP", offset: 50)
+        }, label: Constants.singUpButtonTitleText, offset: 50)
         .alert(isPresented: $loginViewModel.isPasswordLengthMatch) {
-            Alert(title: Text("Ой!"), message: Text("Пароль должен быть не менее 6 и не более 15 символов") , dismissButton: .cancel())
+            Alert(title: Text(Constants.singUpButtonAlertTitleText), message: Text(Constants.singUpButtonAlertMessageText) , dismissButton: .cancel())
         }
     }
-    
     
     private var gradientNavigationView: some View {
         Rectangle()
             .fill(Color.clear)
             .frame(height: 70)
-            .background(LinearGradient(colors: [.yellow.opacity(1), .red.opacity(0.7)],
-                                       startPoint: .topLeading, endPoint: .bottomTrailing)
+            .background(LinearGradient(
+                colors: [.yellow.opacity(1),
+                .red.opacity(0.7)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing)
             )
             .padding(.bottom, 5)
     }
@@ -154,72 +174,33 @@ struct LoginView: View {
             ZStack {
                 Rectangle()
                     .frame(width: 155, height: 74)
-                    .cornerRadius(38, corners: .topLeft)
-                    .cornerRadius(38, corners: .bottomLeft)
+                    .cornerRadius(Constants.cornerRadiusPlusThreeValue, corners: .topLeft)
+                    .cornerRadius(Constants.cornerRadiusPlusThreeValue, corners: .bottomLeft)
                     .foregroundColor(.gray.opacity(0.5))
-                Text("Log In")
+                Text(Constants.loginButtonViewLoginText)
                     .frame(width: 150, height: 70)
                     .background(.white)
-                    .cornerRadius(35, corners: .topLeft)
-                    .cornerRadius(35, corners: .bottomLeft)
-                    .foregroundColor(Color("lightPurple"))
+                    .cornerRadius(Constants.cornerRadiusValue, corners: .topLeft)
+                    .cornerRadius(Constants.cornerRadiusValue, corners: .bottomLeft)
+                    .foregroundColor(Color(Constants.lightPurpleColorName))
                     .font(.system(size: 37, design: .rounded))
                     .font(Font.headline.weight(.bold))
             }
             ZStack {
                 Rectangle()
                     .frame(width: 155, height: 74)
-                    .cornerRadius(38, corners: .topRight)
-                    .cornerRadius(38, corners: .bottomRight)
+                    .cornerRadius(Constants.cornerRadiusPlusThreeValue, corners: .topRight)
+                    .cornerRadius(Constants.cornerRadiusPlusThreeValue, corners: .bottomRight)
                     .foregroundColor(.gray.opacity(0.5))
-                Text("Sign up")
+                Text(Constants.loginButtonViewSignUpText)
                     .frame(width: 150, height: 70)
-                    .background(Color("lightGray"))
-                    .cornerRadius(35, corners: .topRight)
-                    .cornerRadius(35, corners: .bottomRight)
-                    .foregroundColor(Color("darkPurple"))
+                    .background(Color(Constants.lightGrayColorName))
+                    .cornerRadius(Constants.cornerRadiusValue, corners: .topRight)
+                    .cornerRadius(Constants.cornerRadiusValue, corners: .bottomRight)
+                    .foregroundColor(Color(Constants.darkPurpleColorName))
                     .font(.system(size: 37, design: .rounded))
                     .font(Font.headline.weight(.bold))
             }
-        }
-    }
-    
-    // Private Methods
-    private func formatterNumberStyle(text: inout String, newValue: String) {
-        //        if newValue.count == 1 {
-        //            text = "+\(text)("
-        //        } else if newValue.count == 6 {
-        //            text = "\(text)) "
-        //        } else if newValue.count == 11 {
-        //            text = "\(text)-"
-        //        } else if newValue.count == 14 {
-        //            text = "\(text)-"
-        //        }
-        //    }
-        
-        if newValue.count > 0 {
-            if newValue[newValue.startIndex] == "8" {
-                text.remove(at: text.startIndex)
-                text.insert("7", at: text.startIndex)
-            }
-            if newValue[newValue.startIndex] == "9" {
-                text.insert("7", at: text.startIndex)
-            }
-        }
-        
-        if newValue.count == 11 {
-            text.insert("+", at: text.startIndex)
-            text.insert("(", at: text.index(text.startIndex, offsetBy: 2))
-            text.insert(")", at: text.index(text.startIndex, offsetBy: 6))
-            text.insert("-", at: text.index(text.startIndex, offsetBy: 10))
-            text.insert("-", at: text.index(text.startIndex, offsetBy: 13))
-        }
-        if newValue.count == 15 {
-            text.remove(at: text.index(text.startIndex, offsetBy: 13))
-            text.remove(at: text.index(text.startIndex, offsetBy: 10))
-            text.remove(at: text.index(text.startIndex, offsetBy: 6))
-            text.remove(at: text.index(text.startIndex, offsetBy: 2))
-            text.remove(at: text.startIndex)
         }
     }
 }
