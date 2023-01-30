@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5746F8F2297698A400FB06A5 /* SwiftUIDZApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */; };
-		5746F8F4297698A400FB06A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* ContentView.swift */; };
+		5746F8F4297698A400FB06A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* SettingsView.swift */; };
 		5746F8F6297698A500FB06A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F5297698A500FB06A5 /* Assets.xcassets */; };
 		5746F8F9297698A500FB06A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */; };
+		57AF5EA429883677006E8185 /* NeumorphismUnSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */; };
+		57AF5EA629883774006E8185 /* NeumorphismSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA529883774006E8185 /* NeumorphismSelected.swift */; };
+		57AF5EA8298837E9006E8185 /* NeumorphismSelectedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */; };
+		57AF5EAB298838C1006E8185 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EAA298838C1006E8185 /* View+extension.swift */; };
+		57AF5EAF298843E9006E8185 /* BackgroundStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,11 +38,16 @@
 /* Begin PBXFileReference section */
 		5746F8EE297698A400FB06A5 /* SwiftUIDZ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIDZ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIDZApp.swift; sourceTree = "<group>"; };
-		5746F8F3297698A400FB06A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5746F8F3297698A400FB06A5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		5746F8F5297698A500FB06A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5746F8FE297698A500FB06A5 /* SwiftUIDZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F908297698A500FB06A5 /* SwiftUIDZUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismUnSelected.swift; sourceTree = "<group>"; };
+		57AF5EA529883774006E8185 /* NeumorphismSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelected.swift; sourceTree = "<group>"; };
+		57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelectedCircle.swift; sourceTree = "<group>"; };
+		57AF5EAA298838C1006E8185 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
+		57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +97,9 @@
 			isa = PBXGroup;
 			children = (
 				5746F8F1297698A400FB06A5 /* SwiftUIDZApp.swift */,
-				5746F8F3297698A400FB06A5 /* ContentView.swift */,
+				57AF5EAC298838DB006E8185 /* Extensions */,
+				57AF5EA929883870006E8185 /* Helpers */,
+				57AF5EAD298839C4006E8185 /* Settings */,
 				5746F8F5297698A500FB06A5 /* Assets.xcassets */,
 				5746F8F7297698A500FB06A5 /* Preview Content */,
 			);
@@ -100,6 +112,33 @@
 				5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		57AF5EA929883870006E8185 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				57AF5EA529883774006E8185 /* NeumorphismSelected.swift */,
+				57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */,
+				57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */,
+				57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		57AF5EAC298838DB006E8185 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				57AF5EAA298838C1006E8185 /* View+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		57AF5EAD298839C4006E8185 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5746F8F3297698A400FB06A5 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +271,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5746F8F4297698A400FB06A5 /* ContentView.swift in Sources */,
+				57AF5EA8298837E9006E8185 /* NeumorphismSelectedCircle.swift in Sources */,
+				57AF5EAF298843E9006E8185 /* BackgroundStackView.swift in Sources */,
+				57AF5EA629883774006E8185 /* NeumorphismSelected.swift in Sources */,
+				5746F8F4297698A400FB06A5 /* SettingsView.swift in Sources */,
+				57AF5EA429883677006E8185 /* NeumorphismUnSelected.swift in Sources */,
+				57AF5EAB298838C1006E8185 /* View+extension.swift in Sources */,
 				5746F8F2297698A400FB06A5 /* SwiftUIDZApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
