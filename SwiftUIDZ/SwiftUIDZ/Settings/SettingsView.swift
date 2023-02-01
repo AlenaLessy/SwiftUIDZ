@@ -1,17 +1,12 @@
-//
-//  SettingsView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 17.01.2023.
-//
+// SettingsView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Экран настроек
 struct SettingsView: View {
-    
     // MARK: - Private Constants
-    
+
     private enum Constants {
         static let backgroundColorName = "back2"
         static let gradientTopColorName = "GradientTop"
@@ -21,38 +16,45 @@ struct SettingsView: View {
         static let headerSpeedText = "187 km"
         static let emptyString = ""
     }
-    
-  // MARK: - Public Properties
+
+    // MARK: - Public Properties
 
     var body: some View {
         BackgroundStackView(colors: settingsViewModel.backgroundColors) {
-                VStack {
-                    NavigationLink(destination: ClimateControlView(), isActive: $settingsViewModel.isClimateControlViewDestination) {
-                        Text(Constants.emptyString)
-                    }
-                    headerView
-                    carView
-                    controlPanelView
-                    Spacer()
-                        .frame(height: 40)
-                    if settingsViewModel.isOpenCarButtonPressed() {
-                        closeCarControlView
-                    }
-                    Spacer()
+            VStack {
+                NavigationLink(
+                    destination: ClimateControlView(),
+                    isActive: $settingsViewModel.isClimateControlViewDestination
+                ) {
+                    Text(Constants.emptyString)
                 }
-                .padding()
+                headerView
+                carView
+                controlPanelView
+                Spacer()
+                    .frame(height: 40)
+                if settingsViewModel.isOpenCarButtonPressed() {
+                    closeCarControlView
+                }
+                Spacer()
+            }
+            .padding()
         }
-            .navigationBarHidden(true)
+        .navigationBarHidden(true)
     }
-    
+
     // MARK: - Private Properties
-    
+
     @StateObject private var settingsViewModel = SettingsViewModel()
-    
+
     private var gradient: LinearGradient {
-        LinearGradient(colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)], startPoint: .bottom, endPoint: .top)
+        LinearGradient(
+            colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)],
+            startPoint: .bottom,
+            endPoint: .top
+        )
     }
-    
+
     private var controlPanelView: some View {
         HStack(spacing: 30) {
             ForEach(1 ..< Constants.controlPanelButtonsCountNumber) { index in
@@ -69,15 +71,16 @@ struct SettingsView: View {
                         .overlay(
                             Circle()
                                 .stroke(gradient, lineWidth: 2)
-                                .opacity(settingsViewModel.buttonTagSelected == index ? 1: 0)
+                                .opacity(settingsViewModel.buttonTagSelected == index ? 1 : 0)
                         )
                 }
             }
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 50).fill(Color(Constants.backgroundColorName))).neumorphismUnSelectedStyle()
+        .background(RoundedRectangle(cornerRadius: 50).fill(Color(Constants.backgroundColorName)))
+        .neumorphismUnSelectedStyle()
     }
-    
+
     private var headerView: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -94,7 +97,7 @@ struct SettingsView: View {
         }
         .padding(.all, 25)
     }
-    
+
     private var carView: some View {
         Image(settingsViewModel.getTeslaOrOpenTeslaImageName())
             .resizable()
@@ -103,7 +106,7 @@ struct SettingsView: View {
             .padding(.bottom, 40)
             .shadow(color: .white.opacity(0.6), radius: 15, x: 10, y: 10)
     }
-    
+
     private var closeCarControlView: some View {
         Button {
             withAnimation {
@@ -129,6 +132,7 @@ struct SettingsView: View {
     }
 }
 
+///
 struct ContentViewPreviews: PreviewProvider {
     static var previews: some View {
         SettingsView()

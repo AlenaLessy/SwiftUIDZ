@@ -1,9 +1,5 @@
-//
-//  SwiftUIDZApp.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 17.01.2023.
-//
+// SwiftUIDZApp.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 

@@ -1,17 +1,12 @@
-//
-//  WelcomeView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 30.01.2023.
-//
+// WelcomeView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Экран приветствия
 struct WelcomeView: View {
-    
     // MARK: - Private Constants
-    
+
     private enum Constants {
         static let settingsImageName = "settings"
         static let hiText = "Hi"
@@ -24,11 +19,9 @@ struct WelcomeView: View {
         static let emptyString = ""
         static let backgroundCloseCarControlColorName = "buttonBackground"
     }
-    
-    
-    
+
     // MARK: - Public Properties
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -39,7 +32,7 @@ struct WelcomeView: View {
                         navigationView
                         settingsButtonView
                     }
-                    HiTextView
+                    hiTextView
                     welcomeTextView
                     carImageView
                     closeCarControlView
@@ -48,44 +41,44 @@ struct WelcomeView: View {
             }
         }
     }
-    
+
     // MARK: - Private Properties
-    
+
     @StateObject private var welcomeViewModel = WelcomeViewModel()
-    
+
     private var settingsButtonView: some View {
-        СonvexCircleButtonView(actionHandler: {
+        ConvexCircleButtonView(actionHandler: {
             welcomeViewModel.isSettingsButtonPressed = true
-        }, iconName: Constants.settingsImageName)
-        .offset(x: 130, y: -30)
+        }, iconName: Constants.settingsImageName, isEnabled: welcomeViewModel.isSettingsButtonPressed)
+            .offset(x: 130, y: -30)
     }
-    
+
     private var navigationView: some View {
         NavigationLink(destination: SettingsView(), isActive: $welcomeViewModel.isSettingsButtonPressed) {}
     }
-    
-    private var HiTextView: Text {
+
+    private var hiTextView: Text {
         Text(Constants.hiText)
             .foregroundColor(welcomeViewModel.isChangeImage ? .gray : .black)
             .font(.system(size: 20))
             .font(.title)
             .bold()
     }
-    
+
     private var welcomeTextView: Text {
-        return Text(Constants.welcomeBackText)
+        Text(Constants.welcomeBackText)
             .foregroundColor(welcomeViewModel.isChangeImage ? .white : .black)
             .font(.system(size: 40))
             .bold()
     }
-    
+
     private var carImageView: some View {
-        return Image(welcomeViewModel.getCarImageName())
+        Image(welcomeViewModel.getCarImageName())
             .resizable()
             .frame(width: 407, height: 330)
             .offset(y: welcomeViewModel.isChangeImage ? 20 : -30)
     }
-    
+
     private var backgroundCloseCarControlView: some View {
         RoundedRectangle(cornerRadius: 50)
             .fill(Color(Constants.backgroundCloseCarControlColorName).opacity(0.5))
@@ -104,7 +97,7 @@ struct WelcomeView: View {
                     .mask(RoundedRectangle(cornerRadius: 50).fill(LinearGradient(Color.clear, Color.black)))
             )
     }
-    
+
     private var openButtonView: some View {
         Button {
             withAnimation(.linear(duration: 1.5).delay(welcomeViewModel.isLock ? 0 : 1)) {
@@ -120,9 +113,20 @@ struct WelcomeView: View {
             } icon: {
                 ZStack {
                     Circle()
-                        .fill(LinearGradient(colors: [Color.white.opacity(0.15), Color.black.opacity(0.35)], startPoint: .top, endPoint: .bottomTrailing))
+                        .fill(LinearGradient(
+                            colors: [Color.white.opacity(0.15), Color.black.opacity(0.35)],
+                            startPoint: .top,
+                            endPoint: .bottomTrailing
+                        ))
                         .frame(width: 44)
-                        .overlay(Circle().stroke(LinearGradient(colors: [Color.black.opacity(0.6), Color.white.opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1))
+                        .overlay(Circle().stroke(
+                            LinearGradient(
+                                colors: [Color.black.opacity(0.6), Color.white.opacity(0.2)],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 1
+                        ))
                         .padding(.all, 0)
                         .background(Circle().fill(Color(Constants.buttonBackgroundColorName).opacity(0)))
                         .shadow(color: Color(Constants.buttonShadowColorLightName).opacity(0.2), radius: 3, x: 4)
@@ -134,11 +138,10 @@ struct WelcomeView: View {
         }
         .offset(x: 5)
     }
-    
+
     private var closeCarControlView: some View {
-        
         ZStack {
-          backgroundCloseCarControlView
+            backgroundCloseCarControlView
             HStack(spacing: 10) {
                 Text(welcomeViewModel.getLockTitleText())
                     .bold()
@@ -147,15 +150,22 @@ struct WelcomeView: View {
         }
         .frame(width: 165, height: 79)
     }
-    
+
     private var gradientView: GradientsBackgroundStackView {
-        GradientsBackgroundStackView(fromGradientColors: welcomeViewModel.lockGradientColors, toGradientColors: welcomeViewModel.unlockGradientColors, progress: welcomeViewModel.gradientProgress)
+        GradientsBackgroundStackView(
+            fromGradientColors: welcomeViewModel.lockGradientColors,
+            toGradientColors: welcomeViewModel.unlockGradientColors,
+            progress: welcomeViewModel.gradientProgress
+        )
     }
-    
+
     private var gradient: LinearGradient {
-        LinearGradient(colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)], startPoint: .bottom, endPoint: .top)
+        LinearGradient(
+            colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)],
+            startPoint: .bottom,
+            endPoint: .top
+        )
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

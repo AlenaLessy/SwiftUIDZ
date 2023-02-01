@@ -1,9 +1,5 @@
-//
-//  LineGradient+extension.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 31.01.2023.
-//
+// LineGradient+extension.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 

@@ -1,9 +1,5 @@
-//
-//  SettingsClimateModel.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 01.02.2023.
-//
+// SettingsClimateModel.swift
+// Copyright © RoadMap. All rights reserved.
 
 import Foundation
 
@@ -17,12 +13,23 @@ struct SettingsClimateModel {
     let sliderMaxValue: Double
     /// Активность настройки
     var isAction: Bool
-    
+
     static func getSettings() -> [SettingsClimateModel] {
-       [SettingsClimateModel(settingName: "As", settingsImageName: "snowflake", sliderMaxValue: 15, isAction: false),
-        SettingsClimateModel(settingName: "Fan", settingsImageName: "wind", sliderMaxValue: 15, isAction: false),
-        SettingsClimateModel(settingName: "Heat", settingsImageName: "humidity.fill", sliderMaxValue: 15, isAction: false),
-        SettingsClimateModel(settingName: "Auto", settingsImageName: "timer", sliderMaxValue: 15, isAction: false)
+        [
+            SettingsClimateModel(
+                settingName: "As",
+                settingsImageName: "snowflake",
+                sliderMaxValue: 15,
+                isAction: false
+            ),
+            SettingsClimateModel(settingName: "Fan", settingsImageName: "wind", sliderMaxValue: 15, isAction: false),
+            SettingsClimateModel(
+                settingName: "Heat",
+                settingsImageName: "humidity.fill",
+                sliderMaxValue: 15,
+                isAction: false
+            ),
+            SettingsClimateModel(settingName: "Auto", settingsImageName: "timer", sliderMaxValue: 15, isAction: false)
         ]
     }
 }

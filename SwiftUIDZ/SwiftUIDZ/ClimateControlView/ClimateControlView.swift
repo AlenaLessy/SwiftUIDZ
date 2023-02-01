@@ -1,17 +1,12 @@
-//
-//  ClimateControlView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 31.01.2023.
-//
+// ClimateControlView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Настройки системы кондиционирования
 struct ClimateControlView: View {
-    
     // MARK: - Private Constants
-    
+
     private enum Constants {
         static let gradientTopColorName = "GradientTop"
         static let gradientBottomColorName = "GradientBottom"
@@ -48,9 +43,9 @@ struct ClimateControlView: View {
         static let halfScreenNumber: CGFloat = 2
         static let maxSteperNumber: CGFloat = 15
     }
-    
+
     // MARK: - Public Properties
-    
+
     var body: some View {
         VStack {
             BackgroundStackView(colors: climateControlViewModel.gradientColors) {
@@ -88,27 +83,28 @@ struct ClimateControlView: View {
         }
         .navigationBarBackButtonHidden()
     }
-    
+
     // MARK: - Private Properties
-    
+
     @Environment(\.presentationMode) private var presentation
-    
+
     @GestureState private var bottomSheetGestureOffsetValue = CGSize.zero
-    
+
     @StateObject private var climateControlViewModel = ClimateControlViewModel()
-    
+
     private var climateTextView: Text {
-        return Text(Constants.climateTextViewText)
+        Text(Constants.climateTextViewText)
             .font(.system(size: 20))
             .bold()
             .font(.title2)
     }
-    
+
     private var dragBottomSheetGesture: some Gesture {
         DragGesture()
             .updating($bottomSheetGestureOffsetValue) { value, state, _ in
                 state = value.translation
-                onChangeBottomSheetOffset()
+                climateControlViewModel
+                    .onChangeBottomSheetOffset(gestureOffsetValue: bottomSheetGestureOffsetValue.height)
             }
             .onEnded { _ in
                 withAnimation {
@@ -116,7 +112,7 @@ struct ClimateControlView: View {
                 }
             }
     }
-    
+
     private var alertButtonView: some View {
         Button {
             climateControlViewModel.isSettingsButtonPressed.toggle()
@@ -129,7 +125,7 @@ struct ClimateControlView: View {
                 .cornerRadius(8)
         }
     }
-    
+
     private var alertView: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
@@ -146,43 +142,78 @@ struct ClimateControlView: View {
                     alertButtonView
                 }
             }
-        } .frame(width: 300, height: 300)
+        }.frame(width: 300, height: 300)
     }
-    
+
     private var toolbarTitleTextView: some View {
         Text(Constants.toolbarTitleText)
     }
-    
+
     private var backButtonView: some View {
-        СonvexCircleButtonView(actionHandler: {
+        ConvexCircleButtonView(actionHandler: {
             presentation.wrappedValue.dismiss()
-        }, iconName: Constants.backButtonViewIconName).tint(.white)
+        }, iconName: Constants.backButtonViewIconName, isEnabled: false).tint(.white)
     }
-    
+
     private var settingsButtonView: some View {
-        СonvexCircleButtonView(actionHandler: {
-            climateControlViewModel.isSettingsButtonPressed.toggle()
-        }, iconName: Constants.settingsButtonViewIconName).tint(.white)
+        ConvexCircleButtonView(
+            actionHandler: {
+                climateControlViewModel.isSettingsButtonPressed.toggle()
+            },
+            iconName: Constants.settingsButtonViewIconName,
+            isEnabled: climateControlViewModel.isSettingsButtonPressed
+        ).tint(.white)
     }
-    
+
     private var temperatureIndicatorView: some View {
-        return ZStack {
+        ZStack {
             Circle()
-                .fill(LinearGradient(colors: [Color.black.opacity(0.3), Color.white.opacity(0.1)], startPoint: .top, endPoint: .bottomTrailing))
+                .fill(LinearGradient(
+                    colors: [Color.black.opacity(0.3), Color.white.opacity(0.1)],
+                    startPoint: .top,
+                    endPoint: .bottomTrailing
+                ))
                 .frame(width: 140)
-                .overlay(Circle().stroke(LinearGradient(colors: [Color(Constants.overlayOneTemperatureIndicatorView), Color(Constants.overlayTwoTemperatureIndicatorView)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 28))
+                .overlay(Circle().stroke(
+                    LinearGradient(
+                        colors: [
+                            Color(Constants.overlayOneTemperatureIndicatorView),
+                            Color(Constants.overlayTwoTemperatureIndicatorView)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 28
+                ))
                 .background(Circle().fill(Color(Constants.buttonBackgroundColorName)))
                 .shadow(color: Color(Constants.buttonShadowColorLightName).opacity(0.1), radius: 25, x: -17, y: -15)
                 .shadow(color: Color(Constants.buttonShadowColorDarkName).opacity(0.5), radius: 20, x: 15, y: 15)
-            
+
             Circle()
                 .fill(.clear)
                 .frame(width: 110)
-                .overlay(Circle().stroke(LinearGradient(colors: [Color(.black).opacity(0.2), Color(.white).opacity(0.1), Color(.black).opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.5))
-            
+                .overlay(Circle().stroke(
+                    LinearGradient(colors: [
+                        Color(.black).opacity(0.2),
+                        Color(.white).opacity(0.1),
+                        Color(.black).opacity(0.2)
+                    ], startPoint: .topLeading, endPoint: .bottomTrailing),
+                    lineWidth: 1.5
+                ))
+
             Circle()
-                .trim(from: 0, to: climateControlViewModel.isClimateControlEnabled ? (  CGFloat(climateControlViewModel.getTemperature()) / 75) : 0)
-                .stroke(LinearGradient(colors: [Color(climateControlViewModel.bottomGradientColor), Color(climateControlViewModel.topGradientColor)], startPoint: .top, endPoint: .bottomTrailing), lineWidth: 15)
+                .trim(
+                    from: 0,
+                    to: climateControlViewModel
+                        .isClimateControlEnabled ? (CGFloat(climateControlViewModel.getTemperature()) / 75) : 0
+                )
+                .stroke(
+                    LinearGradient(colors: [
+                        Color(climateControlViewModel.bottomGradientColor),
+                        Color(climateControlViewModel.topGradientColor)
+                    ], startPoint: .top, endPoint: .bottomTrailing),
+                    lineWidth: 15
+                )
                 .frame(width: 168)
                 .rotationEffect(.degrees(-90))
                 .shadow(color: Color(climateControlViewModel.bottomGradientColor).opacity(0.5), radius: 3, x: -3, y: -3)
@@ -192,11 +223,15 @@ struct ClimateControlView: View {
             }
         }
     }
-    
+
     private var gradient: LinearGradient {
-        LinearGradient(colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)], startPoint: .bottom, endPoint: .top)
+        LinearGradient(
+            colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)],
+            startPoint: .bottom,
+            endPoint: .top
+        )
     }
-    
+
     private var bottomSheetBackGroundView: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
@@ -205,7 +240,7 @@ struct ClimateControlView: View {
                 .fill(gradient).opacity(0.15)
         }
     }
-    
+
     private var bottomSheetACIsOnTextView: some View {
         HStack {
             Text(Constants.aCIsONText)
@@ -214,26 +249,26 @@ struct ClimateControlView: View {
             Spacer()
         }
     }
-    
+
     private var bottomSheetEnableButtonView: some View {
-        СonvexCircleButtonView(actionHandler: {
+        ConvexCircleButtonView(actionHandler: {
             climateControlViewModel.isClimateControlEnabled.toggle()
-        }, iconName: Constants.onImageName)
+        }, iconName: Constants.onImageName, isEnabled: climateControlViewModel.isClimateControlEnabled)
     }
-    
+
     private var bottomSheetDescriptionTextView: some View {
         Text(Constants.bottomSheetTextDescriptionText)
             .font(Font.system(size: 15, weight: .semibold))
             .foregroundColor(.gray)
     }
-    
+
     private var bottomSheetCapsuleView: some View {
         Capsule()
             .fill(.black)
             .frame(width: 70, height: 5)
             .padding(.top)
     }
-    
+
     private var colorPikersAndTextView: some View {
         HStack {
             Text(Constants.onText)
@@ -247,7 +282,7 @@ struct ClimateControlView: View {
             Text(Constants.ventText)
         }
     }
-    
+
     private var steperView: some View {
         HStack {
             Button {
@@ -270,7 +305,7 @@ struct ClimateControlView: View {
             }
         }
     }
-    
+
     private var topPartBottomSheetView: some View {
         ZStack {
             bottomSheetBackGroundView
@@ -295,7 +330,7 @@ struct ClimateControlView: View {
         }
         .frame(height: 130)
     }
-    
+
     private var bottomPartBottomSheetView: some View {
         VStack {
             ZStack {
@@ -313,12 +348,11 @@ struct ClimateControlView: View {
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width - Constants.bottomPartBottomSheetViewSpacingNumber)
-                
             }
             .frame(height: 130)
         }
     }
-    
+
     private var bottomSheetView: some View {
         VStack {
             topPartBottomSheetView
@@ -329,13 +363,10 @@ struct ClimateControlView: View {
         .offset(y: UIScreen.main.bounds.height / Constants.halfScreenNumber)
         .offset(y: climateControlViewModel.bottomSheetCurrentOffsetY)
         .gesture(dragBottomSheetGesture)
-        
     }
-    
-    
-    
+
     // MARK: - Private Methods
-    
+
     private func climateControlTextView(index: Int) -> some View {
         Text(climateControlViewModel.settingsClimate[index].settingName)
             .font(.title)
@@ -343,13 +374,7 @@ struct ClimateControlView: View {
             .foregroundColor(Color(Constants.climateControlTextViewForegroundColor))
             .frame(width: 70)
     }
-    
-    private func onChangeBottomSheetOffset() {
-        DispatchQueue.main.async {
-            climateControlViewModel.bottomSheetCurrentOffsetY = bottomSheetGestureOffsetValue.height + climateControlViewModel.bottomSheetLastOffsetY
-        }
-    }
-    
+
     private func climateControlButtonView(index: Int) -> some View {
         Button {
             climateControlViewModel.settingsClimate[index].isAction.toggle()
@@ -359,27 +384,41 @@ struct ClimateControlView: View {
         } label: {
             ZStack {
                 Circle()
-                    .fill(LinearGradient(colors: [Color.white.opacity(0.15), Color.black.opacity(0.35)], startPoint: .top, endPoint: .bottomTrailing))
+                    .fill(LinearGradient(
+                        colors: [Color.white.opacity(0.15), Color.black.opacity(0.35)],
+                        startPoint: .top,
+                        endPoint: .bottomTrailing
+                    ))
                     .frame(width: 60)
-                    .overlay(Circle().stroke(LinearGradient(colors: [Color.black.opacity(0.6), Color.white.opacity(0.2)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1))
+                    .overlay(Circle().stroke(
+                        LinearGradient(
+                            colors: [Color.black.opacity(0.6), Color.white.opacity(0.2)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ),
+                        lineWidth: 1
+                    ))
                     .padding(.all, 0)
                     .background(Circle().fill(Color(Constants.buttonBackgroundColorName).opacity(0)))
-                
+
                     .shadow(color: Color(Constants.buttonShadowColorLightName).opacity(0.2), radius: 3, x: 4)
                     .shadow(color: Color(Constants.buttonShadowColorDarkName).opacity(0.2), radius: 3)
                 Image(systemName: climateControlViewModel.settingsClimate[index].settingsImageName)
-                    .foregroundColor(climateControlViewModel.settingsClimate[index].isAction ? Color(Constants.gradientBottomColorName) : .white)
+                    .foregroundColor(
+                        climateControlViewModel.settingsClimate[index]
+                            .isAction ? Color(Constants.gradientBottomColorName) : .white
+                    )
             }
         }
     }
-    
+
     private func climateControlSliderView(index: Int) -> some View {
         NeumorphismSlider(value: Binding(get: {
             if climateControlViewModel.settingsClimate[index].isAction {
                 climateControlViewModel.getTemperature()
-                return   climateControlViewModel.climateSliderValues[index]
+                return climateControlViewModel.climateSliderValues[index]
             } else {
-                return   0.0
+                return 0.0
             }
         }, set: { newValue in
             if climateControlViewModel.settingsClimate[index].isAction {
@@ -389,10 +428,10 @@ struct ClimateControlView: View {
                 climateControlViewModel.climateSliderValues[index] = 0.0
                 climateControlViewModel.getTemperature()
             }
-        }), in: 0...Constants.maxSteperNumber, step: 1)
-        .frame(width: 230, height: 50)
+        }), in: 0 ... Constants.maxSteperNumber, step: 1)
+            .frame(width: 230, height: 50)
     }
-    
+
     private func makeClimateGroupView(index: Int) -> some View {
         VStack {
             HStack(spacing: 10) {
@@ -405,6 +444,7 @@ struct ClimateControlView: View {
     }
 }
 
+///
 struct ContentViewreviews: PreviewProvider {
     static var previews: some View {
         ClimateControlView()

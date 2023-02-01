@@ -11,6 +11,7 @@
 		5746F8F4297698A400FB06A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* SettingsView.swift */; };
 		5746F8F6297698A500FB06A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F5297698A500FB06A5 /* Assets.xcassets */; };
 		5746F8F9297698A500FB06A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */; };
+		5779ABC2298ABA0A002F5DFD /* NeumorphismSliderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5779ABC1298ABA0A002F5DFD /* NeumorphismSliderViewModel.swift */; };
 		57AF5EA429883677006E8185 /* NeumorphismUnSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */; };
 		57AF5EA629883774006E8185 /* NeumorphismSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA529883774006E8185 /* NeumorphismSelected.swift */; };
 		57AF5EA8298837E9006E8185 /* NeumorphismSelectedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */; };
@@ -20,7 +21,7 @@
 		57AF5EB42988591E006E8185 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB32988591E006E8185 /* SettingsViewModel.swift */; };
 		57AF5EB6298869E5006E8185 /* GradientsBackgroundStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB5298869E5006E8185 /* GradientsBackgroundStackView.swift */; };
 		57AF5EBA29892780006E8185 /* AnimatableGradientModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB929892780006E8185 /* AnimatableGradientModifier.swift */; };
-		57AF5EBC2989524B006E8185 /* СonvexCircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EBB2989524B006E8185 /* СonvexCircleButtonView.swift */; };
+		57AF5EBC2989524B006E8185 /* ConvexCircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EBB2989524B006E8185 /* ConvexCircleButtonView.swift */; };
 		57AF5EBE29899E67006E8185 /* ClimateControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EBD29899E67006E8185 /* ClimateControlView.swift */; };
 		57E3D6C82989B465000DDBFA /* LineGradient+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3D6C72989B465000DDBFA /* LineGradient+extension.swift */; };
 		57E3D6CA2989D0CA000DDBFA /* NeumorphismSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3D6C92989D0CA000DDBFA /* NeumorphismSlider.swift */; };
@@ -54,6 +55,7 @@
 		5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5746F8FE297698A500FB06A5 /* SwiftUIDZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F908297698A500FB06A5 /* SwiftUIDZUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5779ABC1298ABA0A002F5DFD /* NeumorphismSliderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSliderViewModel.swift; sourceTree = "<group>"; };
 		57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismUnSelected.swift; sourceTree = "<group>"; };
 		57AF5EA529883774006E8185 /* NeumorphismSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelected.swift; sourceTree = "<group>"; };
 		57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelectedCircle.swift; sourceTree = "<group>"; };
@@ -63,7 +65,7 @@
 		57AF5EB32988591E006E8185 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		57AF5EB5298869E5006E8185 /* GradientsBackgroundStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientsBackgroundStackView.swift; sourceTree = "<group>"; };
 		57AF5EB929892780006E8185 /* AnimatableGradientModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradientModifier.swift; sourceTree = "<group>"; };
-		57AF5EBB2989524B006E8185 /* СonvexCircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СonvexCircleButtonView.swift"; sourceTree = "<group>"; };
+		57AF5EBB2989524B006E8185 /* ConvexCircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexCircleButtonView.swift; sourceTree = "<group>"; };
 		57AF5EBD29899E67006E8185 /* ClimateControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimateControlView.swift; sourceTree = "<group>"; };
 		57E3D6C72989B465000DDBFA /* LineGradient+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineGradient+extension.swift"; sourceTree = "<group>"; };
 		57E3D6C92989D0CA000DDBFA /* NeumorphismSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSlider.swift; sourceTree = "<group>"; };
@@ -145,10 +147,11 @@
 				57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */,
 				57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */,
 				57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */,
-				57AF5EBB2989524B006E8185 /* СonvexCircleButtonView.swift */,
+				57AF5EBB2989524B006E8185 /* ConvexCircleButtonView.swift */,
 				57AF5EB5298869E5006E8185 /* GradientsBackgroundStackView.swift */,
 				57AF5EB929892780006E8185 /* AnimatableGradientModifier.swift */,
 				57E3D6C92989D0CA000DDBFA /* NeumorphismSlider.swift */,
+				5779ABC1298ABA0A002F5DFD /* NeumorphismSliderViewModel.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -197,6 +200,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5746F912297698A500FB06A5 /* Build configuration list for PBXNativeTarget "SwiftUIDZ" */;
 			buildPhases = (
+				5779ABBF298AAD40002F5DFD /* Run SwiftFormatter */,
+				5779ABC0298AAD5A002F5DFD /* Run SwiftLint */,
 				5746F8EA297698A400FB06A5 /* Sources */,
 				5746F8EB297698A400FB06A5 /* Frameworks */,
 				5746F8EC297698A400FB06A5 /* Resources */,
@@ -315,6 +320,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5779ABBF298AAD40002F5DFD /* Run SwiftFormatter */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftFormatter";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:~/.mint/bin\"\nswiftformat .\n";
+			showEnvVarsInLog = 0;
+		};
+		5779ABC0298AAD5A002F5DFD /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5746F8EA297698A400FB06A5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -328,8 +376,9 @@
 				57AF5EB1298858F5006E8185 /* WelcomeView.swift in Sources */,
 				5746F8F4297698A400FB06A5 /* SettingsView.swift in Sources */,
 				57E3D6CA2989D0CA000DDBFA /* NeumorphismSlider.swift in Sources */,
-				57AF5EBC2989524B006E8185 /* СonvexCircleButtonView.swift in Sources */,
+				57AF5EBC2989524B006E8185 /* ConvexCircleButtonView.swift in Sources */,
 				57E3D6D0298A7BDE000DDBFA /* WelcomeViewModel.swift in Sources */,
+				5779ABC2298ABA0A002F5DFD /* NeumorphismSliderViewModel.swift in Sources */,
 				57AF5EA429883677006E8185 /* NeumorphismUnSelected.swift in Sources */,
 				57AF5EAB298838C1006E8185 /* View+extension.swift in Sources */,
 				57E3D6C82989B465000DDBFA /* LineGradient+extension.swift in Sources */,
