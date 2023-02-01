@@ -13,15 +13,16 @@ struct NeumorphismSelected: ViewModifier {
     // MARK: - Private Constants
     
     private enum Constants {
-        static let lightShadowColorName = "LightShadow"
-        static let darkShadowColorName = "DarkShadow"
+        static let lightShadowColorName = "ligth"
+        static let darkShadowColorName = "dark"
+        
     }
     
     // MARK: - Public Methods
     
     func body(content: Content) -> some View {
         content
-            .shadow(color: Color(Constants.lightShadowColorName), radius: 5, x: 5, y: 5)
-            .shadow(color: Color(Constants.darkShadowColorName), radius: 5, x: -5, y: -5)
+            .shadow(color: Color(Constants.lightShadowColorName).opacity(0.25), radius: 6, x: 6, y: 6)
+            .shadow(color: Color(Constants.darkShadowColorName).opacity(0.25), radius: 6, x: -6, y: -6)
     }
 }

@@ -13,7 +13,7 @@ struct NeumorphismSelectedCircle: ViewModifier {
     // MARK: - Private Constants
     
     private enum Constants {
-        static let backgroundColorName = "Background"
+        static let backgroundColorName = "back2"
     }
     
     // MARK: - Public Methods

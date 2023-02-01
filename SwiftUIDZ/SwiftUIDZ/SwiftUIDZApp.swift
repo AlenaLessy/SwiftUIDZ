@@ -11,7 +11,7 @@ import SwiftUI
 struct SwiftUIDZApp: App {
     var body: some Scene {
         WindowGroup {
-            SettingsView()
+            WelcomeView()
                 .environment(\.colorScheme, .dark)
         }
     }
