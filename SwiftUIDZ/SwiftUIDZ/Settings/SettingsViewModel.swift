@@ -21,6 +21,8 @@ final class SettingsViewModel: ObservableObject {
         static let openText = "Открыть"
         static let lockOpenFillSystemImageName = "lock.open.fill"
         static let lockFillSystemImageName = "lock.fill"
+        static let backgroundColorName = "back2"
+        
     }
     
     // MARK: - Public Properties
@@ -28,7 +30,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var buttonTagSelected = 0
     @Published var isCarClose = false
     @Published var isClimateControlViewDestination = false
-    @Published var backgroundColors = [Color("back2")]
+    @Published var backgroundColors = [Color(Constants.backgroundColorName)]
     
     
     // MARK: - Public Methods

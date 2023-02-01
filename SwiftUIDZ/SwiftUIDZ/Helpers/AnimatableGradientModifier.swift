@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Анимирование градиентов
 struct AnimatableGradientModifier: AnimatableModifier {
     
     // MARK: - Public Properties

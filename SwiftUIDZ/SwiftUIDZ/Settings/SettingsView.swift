@@ -19,6 +19,7 @@ struct SettingsView: View {
         static let controlPanelButtonsCountNumber = 5
         static let headerNameText = "Tesla"
         static let headerSpeedText = "187 km"
+        static let emptyString = ""
     }
     
   // MARK: - Public Properties
@@ -27,7 +28,7 @@ struct SettingsView: View {
         BackgroundStackView(colors: settingsViewModel.backgroundColors) {
                 VStack {
                     NavigationLink(destination: ClimateControlView(), isActive: $settingsViewModel.isClimateControlViewDestination) {
-                        Text("")
+                        Text(Constants.emptyString)
                     }
                     headerView
                     carView
@@ -74,7 +75,6 @@ struct SettingsView: View {
             }
         }
         .padding()
-        //background
         .background(RoundedRectangle(cornerRadius: 50).fill(Color(Constants.backgroundColorName))).neumorphismUnSelectedStyle()
     }
     

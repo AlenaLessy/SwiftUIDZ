@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-/// Бекграунд экрана
+/// Бекграунд экрана c 1 градиентом
 struct BackgroundStackView<Content: View>: View {
 
     // MARK: - Public Properties

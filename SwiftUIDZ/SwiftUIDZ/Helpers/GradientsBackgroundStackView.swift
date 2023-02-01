@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Бекграунд с градиентами
+/// Бекграунд с  2 градиентами
 struct GradientsBackgroundStackView: View {
     
     // MARK: - Public Properties
@@ -15,7 +15,7 @@ struct GradientsBackgroundStackView: View {
     let fromGradientColors: [Color]
     let toGradientColors: [Color]
     let progress: CGFloat
-
+    
     // MARK: - Public Methods
     
     var body: some View {
@@ -27,28 +27,3 @@ struct GradientsBackgroundStackView: View {
         }
     }
 }
-
-
-//struct GradientBackgroundStackView<Content: View>: View {
-//
-//    // MARK: - Public Properties
-//
-//    let colors: [Color]
-//   // let content: () -> Content
-//
-//    // MARK: - Public Methods
-//
-//    var body: some View {
-//        ZStack {
-//            Rectangle()
-//                .fill(gradient)
-//                .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                .edgesIgnoringSafeArea(.all)
-////             content()
-//        }
-//    }
-//
-//    private var gradient: LinearGradient {
-//        LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom)
-//    }
-//}
