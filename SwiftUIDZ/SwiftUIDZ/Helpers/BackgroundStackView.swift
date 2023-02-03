@@ -1,3 +1,6 @@
+// BackgroundStackView.swift
+// Copyright © RoadMap. All rights reserved.
+
 //
 //  BackgroundStackView.swift
 //  SwiftUIDZ
@@ -6,9 +9,8 @@
 //
 import SwiftUI
 
-/// Бекграунд экрана
+/// Бекграунд экрана c 1 градиентом
 struct BackgroundStackView<Content: View>: View {
-
     // MARK: - Public Properties
 
     let colors: [Color]
@@ -22,7 +24,7 @@ struct BackgroundStackView<Content: View>: View {
                 .fill(LinearGradient(colors: colors, startPoint: .top, endPoint: .bottom))
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .edgesIgnoringSafeArea(.all)
-             content()
+            content()
         }
     }
 }
