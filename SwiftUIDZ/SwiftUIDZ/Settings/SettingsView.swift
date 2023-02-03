@@ -7,82 +7,41 @@
 
 import SwiftUI
 
-/// Вью-модель экрана настроек
-final class SettingsViewModel: ObservableObject {
-    
-    // MARK: - Private Constants
-    
-    private enum Constants {
-        static let openCarButtonTagNumber = 1
-        static let teslaImageName = "tesla"
-        static let openTeslaImageName = "opentesla"
-        static let closeText = "Закрыть"
-        static let openText = "Открыть"
-        static let lockOpenFillSystemImageName = "lock.open.fill"
-        static let lockFillSystemImageName = "lock.fill"
-    }
-    
-    // MARK: - Public Properties
-    
-    @Published var buttonTagSelected = 0
-    @Published var isCarClose = false
-    
-    
-    // MARK: - Public Methods
-    
-    func isOpenCarButtonPressed() -> Bool {
-        if buttonTagSelected == Constants.openCarButtonTagNumber {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func getTeslaOrOpenTeslaImageName() -> String {
-       isCarClose ? Constants.openTeslaImageName : Constants.teslaImageName
-    }
-    
-    func getCloseCarControlTitleText() -> String {
-        isCarClose ? Constants.closeText : Constants.openText
-    }
-        
-    func getCloseCarControlIconName() -> String {
-        isCarClose ? Constants.lockOpenFillSystemImageName : Constants.lockFillSystemImageName
-    }
-}
-
 /// Экран настроек
 struct SettingsView: View {
     
     // MARK: - Private Constants
     
     private enum Constants {
-        static let backgroundColorName = "Background"
+        static let backgroundColorName = "back2"
         static let gradientTopColorName = "GradientTop"
         static let gradientBottomColorName = "GradientBottom"
         static let controlPanelButtonsCountNumber = 5
         static let headerNameText = "Tesla"
         static let headerSpeedText = "187 km"
-       
     }
     
   // MARK: - Public Properties
 
     var body: some View {
-        BackgroundStackView {
-            VStack {
-                headerView
-                carView
-                controlPanelView
-                Spacer()
-                    .frame(height: 40)
-                if settingsViewModel.isOpenCarButtonPressed() {
-                    closeCarControlView
+        BackgroundStackView(colors: settingsViewModel.backgroundColors) {
+                VStack {
+                    NavigationLink(destination: ClimateControlView(), isActive: $settingsViewModel.isClimateControlViewDestination) {
+                        Text("")
+                    }
+                    headerView
+                    carView
+                    controlPanelView
+                    Spacer()
+                        .frame(height: 40)
+                    if settingsViewModel.isOpenCarButtonPressed() {
+                        closeCarControlView
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-            .padding()
+                .padding()
         }
+            .navigationBarHidden(true)
     }
     
     // MARK: - Private Properties
@@ -99,13 +58,13 @@ struct SettingsView: View {
                 Button {
                     withAnimation {
                         settingsViewModel.buttonTagSelected = index
+                        settingsViewModel.isClimateControlButtonPressed()
                     }
                 } label: {
                     Image("\(index)")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 40, height: 40)
-                        .neumorphismSelectedCircleStyle()
                         .overlay(
                             Circle()
                                 .stroke(gradient, lineWidth: 2)
@@ -115,8 +74,8 @@ struct SettingsView: View {
             }
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 50).fill(Color(Constants.backgroundColorName)))
-        .neumorphismUnSelectedStyle()
+        //background
+        .background(RoundedRectangle(cornerRadius: 50).fill(Color(Constants.backgroundColorName))).neumorphismUnSelectedStyle()
     }
     
     private var headerView: some View {
@@ -158,6 +117,7 @@ struct SettingsView: View {
                 } icon: {
                     Image(systemName: settingsViewModel.getCloseCarControlIconName())
                         .renderingMode(.template)
+                        .foregroundStyle(gradient)
                         .neumorphismSelectedCircleStyle()
                 }
             }
@@ -169,7 +129,7 @@ struct SettingsView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentViewPreviews: PreviewProvider {
     static var previews: some View {
         SettingsView()
             .environment(\.colorScheme, .dark)

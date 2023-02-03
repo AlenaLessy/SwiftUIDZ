@@ -16,6 +16,15 @@
 		57AF5EA8298837E9006E8185 /* NeumorphismSelectedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */; };
 		57AF5EAB298838C1006E8185 /* View+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EAA298838C1006E8185 /* View+extension.swift */; };
 		57AF5EAF298843E9006E8185 /* BackgroundStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */; };
+		57AF5EB1298858F5006E8185 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB0298858F5006E8185 /* WelcomeView.swift */; };
+		57AF5EB42988591E006E8185 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB32988591E006E8185 /* SettingsViewModel.swift */; };
+		57AF5EB6298869E5006E8185 /* GradientsBackgroundStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB5298869E5006E8185 /* GradientsBackgroundStackView.swift */; };
+		57AF5EBA29892780006E8185 /* AnimatableGradientModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EB929892780006E8185 /* AnimatableGradientModifier.swift */; };
+		57AF5EBC2989524B006E8185 /* СonvexCircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EBB2989524B006E8185 /* СonvexCircleButtonView.swift */; };
+		57AF5EBE29899E67006E8185 /* ClimateControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EBD29899E67006E8185 /* ClimateControlView.swift */; };
+		57E3D6C82989B465000DDBFA /* LineGradient+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3D6C72989B465000DDBFA /* LineGradient+extension.swift */; };
+		57E3D6CA2989D0CA000DDBFA /* LockerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3D6C92989D0CA000DDBFA /* LockerSlider.swift */; };
+		57E3D6CE298A1805000DDBFA /* SettingsClimateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3D6CD298A1805000DDBFA /* SettingsClimateModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +57,15 @@
 		57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelectedCircle.swift; sourceTree = "<group>"; };
 		57AF5EAA298838C1006E8185 /* View+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+extension.swift"; sourceTree = "<group>"; };
 		57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStackView.swift; sourceTree = "<group>"; };
+		57AF5EB0298858F5006E8185 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		57AF5EB32988591E006E8185 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		57AF5EB5298869E5006E8185 /* GradientsBackgroundStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientsBackgroundStackView.swift; sourceTree = "<group>"; };
+		57AF5EB929892780006E8185 /* AnimatableGradientModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradientModifier.swift; sourceTree = "<group>"; };
+		57AF5EBB2989524B006E8185 /* СonvexCircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СonvexCircleButtonView.swift"; sourceTree = "<group>"; };
+		57AF5EBD29899E67006E8185 /* ClimateControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClimateControlView.swift; sourceTree = "<group>"; };
+		57E3D6C72989B465000DDBFA /* LineGradient+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineGradient+extension.swift"; sourceTree = "<group>"; };
+		57E3D6C92989D0CA000DDBFA /* LockerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockerSlider.swift; sourceTree = "<group>"; };
+		57E3D6CD298A1805000DDBFA /* SettingsClimateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsClimateModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +118,8 @@
 				57AF5EAC298838DB006E8185 /* Extensions */,
 				57AF5EA929883870006E8185 /* Helpers */,
 				57AF5EAD298839C4006E8185 /* Settings */,
+				57AF5EB2298858FF006E8185 /* Welcome */,
+				57AF5EBF29899E6C006E8185 /* ClimateControlView */,
 				5746F8F5297698A500FB06A5 /* Assets.xcassets */,
 				5746F8F7297698A500FB06A5 /* Preview Content */,
 			);
@@ -121,6 +141,10 @@
 				57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */,
 				57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */,
 				57AF5EAE298843E8006E8185 /* BackgroundStackView.swift */,
+				57AF5EBB2989524B006E8185 /* СonvexCircleButtonView.swift */,
+				57AF5EB5298869E5006E8185 /* GradientsBackgroundStackView.swift */,
+				57AF5EB929892780006E8185 /* AnimatableGradientModifier.swift */,
+				57E3D6C92989D0CA000DDBFA /* LockerSlider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -129,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				57AF5EAA298838C1006E8185 /* View+extension.swift */,
+				57E3D6C72989B465000DDBFA /* LineGradient+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -137,8 +162,26 @@
 			isa = PBXGroup;
 			children = (
 				5746F8F3297698A400FB06A5 /* SettingsView.swift */,
+				57AF5EB32988591E006E8185 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		57AF5EB2298858FF006E8185 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				57AF5EB0298858F5006E8185 /* WelcomeView.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		57AF5EBF29899E6C006E8185 /* ClimateControlView */ = {
+			isa = PBXGroup;
+			children = (
+				57AF5EBD29899E67006E8185 /* ClimateControlView.swift */,
+				57E3D6CD298A1805000DDBFA /* SettingsClimateModel.swift */,
+			);
+			path = ClimateControlView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,11 +316,20 @@
 			files = (
 				57AF5EA8298837E9006E8185 /* NeumorphismSelectedCircle.swift in Sources */,
 				57AF5EAF298843E9006E8185 /* BackgroundStackView.swift in Sources */,
+				57AF5EBE29899E67006E8185 /* ClimateControlView.swift in Sources */,
 				57AF5EA629883774006E8185 /* NeumorphismSelected.swift in Sources */,
+				57AF5EB1298858F5006E8185 /* WelcomeView.swift in Sources */,
 				5746F8F4297698A400FB06A5 /* SettingsView.swift in Sources */,
+				57E3D6CA2989D0CA000DDBFA /* LockerSlider.swift in Sources */,
+				57AF5EBC2989524B006E8185 /* СonvexCircleButtonView.swift in Sources */,
 				57AF5EA429883677006E8185 /* NeumorphismUnSelected.swift in Sources */,
 				57AF5EAB298838C1006E8185 /* View+extension.swift in Sources */,
+				57E3D6C82989B465000DDBFA /* LineGradient+extension.swift in Sources */,
+				57AF5EB6298869E5006E8185 /* GradientsBackgroundStackView.swift in Sources */,
 				5746F8F2297698A400FB06A5 /* SwiftUIDZApp.swift in Sources */,
+				57E3D6CE298A1805000DDBFA /* SettingsClimateModel.swift in Sources */,
+				57AF5EBA29892780006E8185 /* AnimatableGradientModifier.swift in Sources */,
+				57AF5EB42988591E006E8185 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
