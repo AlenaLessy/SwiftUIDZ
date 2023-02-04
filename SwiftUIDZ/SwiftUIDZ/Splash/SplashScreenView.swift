@@ -1,9 +1,5 @@
-//
-//  SplashScreenView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// SplashScreenView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
@@ -60,16 +56,13 @@ struct SplashScreenView: View {
         TopPartLogoTeslaShape()
             .trim(from: 0, to: splashScreenViewModel.renderingProgress)
             .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
-           
             .fill(splashScreenViewModel.isFillLogo ? Color(Constants.backgroundColorViewName) : .white)
-        
             .neumorphismSelectedStyle()
     }
     
     private var bottomPartLogoTeslaView: some View {
         BottomPartLogoTeslaShape()
             .trim(from: 0, to: splashScreenViewModel.renderingProgress)
-
             .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round))
             .fill(splashScreenViewModel.isFillLogo ? Color(Constants.backgroundColorViewName) : .white)
             .neumorphismSelectedStyle()

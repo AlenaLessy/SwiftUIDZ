@@ -29,6 +29,7 @@
 		5746F8F4297698A400FB06A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5746F8F3297698A400FB06A5 /* SettingsView.swift */; };
 		5746F8F6297698A500FB06A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F5297698A500FB06A5 /* Assets.xcassets */; };
 		5746F8F9297698A500FB06A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */; };
+		576C0AD8298E568E00489800 /* ChargingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C0AD7298E568E00489800 /* ChargingViewModel.swift */; };
 		57AF5EA429883677006E8185 /* NeumorphismUnSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */; };
 		57AF5EA629883774006E8185 /* NeumorphismSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA529883774006E8185 /* NeumorphismSelected.swift */; };
 		57AF5EA8298837E9006E8185 /* NeumorphismSelectedCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */; };
@@ -88,6 +89,7 @@
 		5746F8F8297698A500FB06A5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5746F8FE297698A500FB06A5 /* SwiftUIDZTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5746F908297698A500FB06A5 /* SwiftUIDZUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUIDZUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		576C0AD7298E568E00489800 /* ChargingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingViewModel.swift; sourceTree = "<group>"; };
 		57AF5EA329883677006E8185 /* NeumorphismUnSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismUnSelected.swift; sourceTree = "<group>"; };
 		57AF5EA529883774006E8185 /* NeumorphismSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelected.swift; sourceTree = "<group>"; };
 		57AF5EA7298837E9006E8185 /* NeumorphismSelectedCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeumorphismSelectedCircle.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				573DB1C3298D0C060058096C /* ChargingView.swift */,
+				576C0AD7298E568E00489800 /* ChargingViewModel.swift */,
 			);
 			path = Charging;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				573DB1A5298D09000058096C /* ClimateControlViewModel.swift in Sources */,
 				573DB1BC298D0B150058096C /* TeslaTabView.swift in Sources */,
 				57E3D6CA2989D0CA000DDBFA /* NeumorphismSliderViewModel.swift in Sources */,
+				576C0AD8298E568E00489800 /* ChargingViewModel.swift in Sources */,
 				573DB1A1298D08870058096C /* NeumorphismSlider.swift in Sources */,
 				573DB1BA298D0AF70058096C /* TabItemPreferenceKey.swift in Sources */,
 				573DB1BE298D0B390058096C /* TabBarShape.swift in Sources */,

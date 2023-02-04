@@ -70,7 +70,8 @@ struct NeumorphismSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
                         .offset(x: -2, y: -2)
                         .mask(RoundedRectangle(cornerRadius: length / 2).fill(LinearGradient(Color.clear, Color.black)))
                 )
-        }.frame(width: 230, height: length / 5)
+        }
+        .frame(width: 230, height: length / 5)
     }
 
     private var thumbView: some View {
@@ -109,7 +110,8 @@ struct NeumorphismSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
                                 .offset(x: -2, y: -2)
                                 .mask(RoundedRectangle(cornerRadius: 3).fill(LinearGradient(Color.clear, Color.black)))
                         )
-                }.frame(width: 7, height: 25)
+                }
+                .frame(width: 7, height: 25)
                 ZStack {
                     RoundedRectangle(cornerRadius: 3)
                         .fill(Color("buttonBackground").opacity(0.5))
@@ -127,7 +129,8 @@ struct NeumorphismSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
                                 .offset(x: -2, y: -2)
                                 .mask(RoundedRectangle(cornerRadius: 3).fill(LinearGradient(Color.clear, Color.black)))
                         )
-                }.frame(width: 7, height: 25)
+                }
+                .frame(width: 7, height: 25)
             }
         }
     }

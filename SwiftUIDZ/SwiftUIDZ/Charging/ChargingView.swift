@@ -1,16 +1,10 @@
-//
-//  ChargingView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// ChargingView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Экран зарядки
 struct ChargingView: View {
-    
-    @State var isChangeSliderValue = 0.0
     
     // MARK: - Private Constants
     
@@ -38,6 +32,8 @@ struct ChargingView: View {
         static let chevronUpSystemImageName = "chevron.up"
         static let buttonBackgroundLightColorName = "buttonBackground"
         static let nearbySuperchargersText = "Nearby superchargers"
+        static let maxChargingValue = 100.0
+        static let minChargingValue = 1.0
     }
     
     // MARK: - Public Properties
@@ -53,25 +49,17 @@ struct ChargingView: View {
                 .padding(.vertical, 40)
                 carImageView
                 ZStack {
-                    Text(Constants.chargingProcentText)
-                        .offset(y: -35)
-                        .font(.largeTitle)
+                    chargingValueTextView
                     volumetricBackRectangleView
                     volumetricFrontRectangleView
                     glowView
                 }
                 .offset(y: -65)
-                VStack {
-                    scaleView
-                    ChargeLimitSlider(value: $isChangeSliderValue, in: 0...16)
-                        .padding(.leading, 50)
-                        .offset(y: -10)
-                }
-                .offset(y: -75)
-                closeCarControlView
-                    .offset(y: -100)
-                
-                    .padding(.vertical, -40)
+                chargingSliderView
+                    .offset(y: -75)
+                     closeCarControlView
+                  .offset(y: -100)
+                  .padding(.vertical, -40)
                 Spacer()
                     .frame(height: 40)
                 Spacer()
@@ -83,7 +71,29 @@ struct ChargingView: View {
     // MARK: - Private Properties
     
     @Environment(\.presentationMode) private var presentation
-  
+    
+    @StateObject private var chargingViewModel = ChargingViewModel()
+    
+    private var chargingValueTextView: some View {
+        Text("\(chargingViewModel.getChargingValue())")
+            .offset(y: -35)
+            .font(.largeTitle)
+    }
+    private var chargingSliderView: some View {
+        VStack {
+            scaleView
+            ChargeLimitSlider(value: Binding(get: {
+                chargingViewModel.changeSliderValue
+            }, set: { newValue in
+                withAnimation() {
+                    chargingViewModel.changeSliderValue = newValue
+                }
+            }), in: 0...Constants.maxChargingValue, step: Constants.minChargingValue)
+            .padding(.leading, 50)
+            .offset(y: -10)
+        }
+    }
+    
     private var gradient: LinearGradient {
         LinearGradient(
             colors: [Color(Constants.gradientTopColorName), Color(Constants.gradientBottomColorName)],
@@ -135,7 +145,8 @@ struct ChargingView: View {
     private var backButtonView: some View {
         ConvexCircleButtonView(actionHandler: {
             presentation.wrappedValue.dismiss()
-        }, iconName: Constants.backButtonViewIconName, isEnabled: false).tint(.white)
+        }, iconName: Constants.backButtonViewIconName, isEnabled: false)
+        .tint(.white)
     }
     
     private var settingsButtonView: some View {
@@ -170,45 +181,49 @@ struct ChargingView: View {
     }
     
     private var volumetricFrontRectangleView: some View {
-        Rectangle()
-            .foregroundColor(.clear)
-            .background(
-                VolumetricRectangleShape(figureWidth: 0.6)
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color(Constants.gradientTopColorName),
-                                Color(Constants.gradientTopColorName).opacity(0.5),
-                                Color(Constants.gradientBottomColorName).opacity(0.7),
-                                Color(Constants.gradientBottomColorName),
-                                
-                                    .black,
-                            ]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
+        VolumetricRectangleShape(figureWidth: chargingViewModel.getChargeProcess())
+            .fill(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(Constants.gradientTopColorName),
+                        Color(Constants.gradientTopColorName).opacity(0.5),
+                        Color(Constants.gradientBottomColorName).opacity(0.7),
+                        Color(Constants.gradientBottomColorName),
+                        .white.opacity(0.3),
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
             )
             .frame(width: 300, height: 80)
-        
+            .mask(VolumetricRectangleShape(figureWidth: 1))
     }
     
     private var glowView: some View {
-        Rectangle()
-            .fill(LinearGradient( gradient: Gradient(colors: [
-                Color(.clear),
-                Color(Constants.gradientBottomColorName).opacity(0.1),
-                Color(Constants.gradientBottomColorName).opacity(0.2),
-                Color(Constants.gradientBottomColorName).opacity(0.3),
-                Color(Constants.gradientBottomColorName).opacity(0.4),
-                Color(Constants.gradientBottomColorName).opacity(0.5)
-            ]),
-                                  startPoint: .top,
-                                  endPoint: .bottom
-            )
-            )
-            .frame(width: 170, height: 100)
-            .offset(x: -60, y: -25)
+        
+        HStack {
+            Rectangle()
+                .fill(LinearGradient( gradient: Gradient(colors: [
+                    Color(.clear),
+                    Color(Constants.gradientBottomColorName).opacity(0.1),
+                    Color(Constants.gradientBottomColorName).opacity(0.2),
+                    Color(Constants.gradientBottomColorName).opacity(0.3),
+                    Color(Constants.gradientBottomColorName).opacity(0.4),
+                    Color(Constants.gradientBottomColorName).opacity(0.5)
+                ]),
+                                      startPoint: .top,
+                                      endPoint: .bottom
+                )
+                )
+                .blur(radius: 10)
+                .frame(width: 3 * CGFloat(chargingViewModel.getChargingValue()), height: 100)
+            
+                .frame(width: 300, height: 100, alignment: .leading)
+            
+            
+                .offset(x: 35, y: -25)
+            Spacer()
+        }
     }
     
     private var superchargersView: some View {
@@ -216,7 +231,7 @@ struct ChargingView: View {
             
         } label: {
             Label {
-                Text("")
+                Text(Constants.emptyString)
             } icon: {
                 ZStack {
                     Circle()
@@ -262,25 +277,32 @@ struct ChargingView: View {
                 superchargersView
             }
         }
-        .frame(width: 300, height: 130)
+        .frame(width: 300, height: 100)
     }
     
     private var backgroundCloseCarControlView: some View {
-        RoundedRectangle(cornerRadius: 50)
+        RoundedRectangle(cornerRadius: 30)
             .fill(Color(Constants.buttonGradientColorName).opacity(0.5))
             .overlay(
-                RoundedRectangle(cornerRadius: 50)
+                RoundedRectangle(cornerRadius: 30)
                     .stroke(Color.black.opacity(1), lineWidth: 8)
                     .blur(radius: 8)
                     .offset(x: 2, y: 2)
-                    .mask(RoundedRectangle(cornerRadius: 50).fill(LinearGradient(Color.black, Color.clear)))
+                    .mask(RoundedRectangle(cornerRadius: 30).fill(LinearGradient(Color.black, Color.clear)))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 50)
+                RoundedRectangle(cornerRadius: 30)
                     .stroke(Color.white.opacity(0.15), lineWidth: 8)
                     .blur(radius: 8)
                     .offset(x: -2, y: -2)
-                    .mask(RoundedRectangle(cornerRadius: 50).fill(LinearGradient(Color.clear, Color.black)))
+                    .mask(RoundedRectangle(cornerRadius: 30).fill(LinearGradient(Color.clear, Color.black)))
             )
+    }
+}
+
+struct ChargingView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChargingView()
+            .environment(\.colorScheme, .dark)
     }
 }

@@ -1,17 +1,11 @@
-//
-//  TabBarView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// TabBarView.swift
+// Copyright © RoadMap. All rights reserved.
+
 import SwiftUI
 
 /// Экран таббара
 struct TabBarView: View {
-    
 
-
-    
     // MARK: - Private Constants
     
     private enum Constants {
@@ -29,7 +23,6 @@ struct TabBarView: View {
     var body: some View {
         TeslaTabView(selection: $startedViewModel.selection, showTabBar: $startedViewModel.showTabBar) {
             ChargingView()
-            
                 .myTabItem {
                     TabItem(title: Constants.emptyString, icon: Constants.carIconName)
                 }
@@ -39,25 +32,16 @@ struct TabBarView: View {
                     TabItem(title: Constants.emptyString, icon: Constants.lightningIconName)
                 }
                 .opacity(startedViewModel.updateTwoScreenOpacity)
-            Color.red
+            Color.black
                 .myTabItem {
                     TabItem(title: Constants.emptyString, icon: Constants.exploreIconIconName)
                 }
                 .opacity(startedViewModel.updateThreeScreenOpacity)
-            Color.red
-            //  Color.background
+            Color.black
                 .myTabItem {
                     TabItem(title: Constants.emptyString, icon: Constants.personIconName)
                 }
                 .opacity(startedViewModel.updateFourScreenOpacity)
         }
-    }
-}
-
-struct StartedView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("")
-//        TabBarView()
-//            .environment(\.colorScheme, .dark)
     }
 }

@@ -1,9 +1,5 @@
-//
-//  SplashScreenViewModel.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// SplashScreenViewModel.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 

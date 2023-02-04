@@ -1,13 +1,4 @@
-//
-//  ChargeLimitSlider.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
-
-import Foundation
-
-// NeumorphismSlider.swift
+// ChargeLimitSlider.swift
 // Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
@@ -20,6 +11,7 @@ struct ChargeLimitSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
                 trackView
+                fillingView
                 thumbView
                     .frame(width: length, height: length / 1.7)
                     .offset(x: (proxy.size.width - length) * neumorphismSliderViewModel.ratio)
@@ -78,7 +70,8 @@ struct ChargeLimitSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
                         .offset(x: -2, y: -2)
                         .mask(RoundedRectangle(cornerRadius: length / 2).fill(LinearGradient(Color.clear, Color.black)))
                 )
-        }.frame(width: 300, height: length / 5)
+        }
+        .frame(width: 300, height: length / 5)
     }
 
     private var thumbView: some View {
@@ -95,6 +88,7 @@ struct ChargeLimitSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
                 )
             )
     .frame(width: 25, height: 30)
+    .offset(x: -17, y: -5)
     }
 
     private var fillingView: some View {
@@ -104,7 +98,7 @@ struct ChargeLimitSlider<V>: View where V: BinaryFloatingPoint, V.Stride: Binary
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ))
-            .frame(width: CGFloat((value) * 15), height: length / 5)
+            .frame(width: CGFloat((value) * 2.8), height: length / 5)
     }
 
     // MARK: - Initializers

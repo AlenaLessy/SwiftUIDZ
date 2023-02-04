@@ -1,17 +1,15 @@
-//
-//  volumetricRectangleShape.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// VolumetricRectangleShape.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Объемный приплюснутый прямоугольник
 struct VolumetricRectangleShape: Shape {
-    // MARK: - Public Methods
+    // MARK: - Public Property
     
     var figureWidth: CGFloat
+    
+    // MARK: - Public Method
     
     func path(in rect: CGRect) -> Path {
         var path = Path()

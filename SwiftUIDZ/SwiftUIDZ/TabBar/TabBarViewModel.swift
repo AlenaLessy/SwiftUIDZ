@@ -1,9 +1,5 @@
-//
-//  TabBarViewModel.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// TabBarViewModel.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 

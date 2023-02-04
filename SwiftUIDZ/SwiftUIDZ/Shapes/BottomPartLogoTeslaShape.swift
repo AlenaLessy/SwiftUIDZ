@@ -1,14 +1,12 @@
-//
-//  BottomPartLogoTeslaShape.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 01.02.2023.
-//
+// BottomPartLogoTeslaShape.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Нижняя часть логотипа теслы
 struct BottomPartLogoTeslaShape: Shape {
+    
+    // MARK: - Public Methods
     
     func path(in rect: CGRect) -> Path {
         var path = Path()

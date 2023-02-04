@@ -1,14 +1,13 @@
-//
-//  TabBarShape.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// TabBarShape.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Фигура для таб бара
 struct TabBarShape: Shape {
+    
+    // MARK: - Public Methods
+    
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: 0, y: 804))

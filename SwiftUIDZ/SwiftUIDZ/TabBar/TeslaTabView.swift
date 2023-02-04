@@ -1,17 +1,11 @@
-//
-//  TeslaTabView.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// TeslaTabView.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Изогнутый таб бар для приложения теслы
 struct TeslaTabView<Content: View>: View {
-    
-    
-    
+
     // MARK: - Public Property
     
     var body: some View {

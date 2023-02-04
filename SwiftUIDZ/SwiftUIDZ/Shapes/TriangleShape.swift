@@ -1,16 +1,11 @@
-//
-//  TriangleShape.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 03.02.2023.
-//
+// TriangleShape.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Треугольник
 struct TriangleShape: Shape {
     // MARK: - Public methods
-    
     
     func path(in rect: CGRect) -> Path {
         Path { path in
