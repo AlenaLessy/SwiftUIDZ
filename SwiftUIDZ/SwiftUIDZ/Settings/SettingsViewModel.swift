@@ -1,17 +1,12 @@
-//
-//  SettingsViewModel.swift
-//  SwiftUIDZ
-//
-//  Created by Алена Панченко on 30.01.2023.
-//
+// SettingsViewModel.swift
+// Copyright © RoadMap. All rights reserved.
 
 import SwiftUI
 
 /// Вью-модель экрана настроек
 final class SettingsViewModel: ObservableObject {
-    
     // MARK: - Private Constants
-    
+
     private enum Constants {
         static let openCarButtonTagNumber = 1
         static let climateControlButtonTagNumber = 2
@@ -21,18 +16,18 @@ final class SettingsViewModel: ObservableObject {
         static let openText = "Открыть"
         static let lockOpenFillSystemImageName = "lock.open.fill"
         static let lockFillSystemImageName = "lock.fill"
+        static let backgroundColorName = "back2"
     }
-    
+
     // MARK: - Public Properties
-    
+
     @Published var buttonTagSelected = 0
     @Published var isCarClose = false
     @Published var isClimateControlViewDestination = false
-    @Published var backgroundColors = [Color("back2")]
-    
-    
+    @Published var backgroundColors = [Color(Constants.backgroundColorName)]
+
     // MARK: - Public Methods
-    
+
     func isOpenCarButtonPressed() -> Bool {
         if buttonTagSelected == Constants.openCarButtonTagNumber {
             return true
@@ -40,21 +35,21 @@ final class SettingsViewModel: ObservableObject {
             return false
         }
     }
-    
-    func isClimateControlButtonPressed()  {
+
+    func isClimateControlButtonPressed() {
         if buttonTagSelected == Constants.climateControlButtonTagNumber {
             isClimateControlViewDestination = true
         }
     }
-    
+
     func getTeslaOrOpenTeslaImageName() -> String {
-       isCarClose ? Constants.openTeslaImageName : Constants.teslaImageName
+        isCarClose ? Constants.openTeslaImageName : Constants.teslaImageName
     }
-    
+
     func getCloseCarControlTitleText() -> String {
         isCarClose ? Constants.closeText : Constants.openText
     }
-        
+
     func getCloseCarControlIconName() -> String {
         isCarClose ? Constants.lockOpenFillSystemImageName : Constants.lockFillSystemImageName
     }
