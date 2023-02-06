@@ -17,7 +17,6 @@ struct FurnitureNotification {
     /// Состояние уведомления
     var isNotificationState: Bool
 
-    
     /// Массив пользователей
     static func getNotifications() -> [FurnitureNotification] {
        [ FurnitureNotification(name: "Product updates", description: "Stair lifts the freedom of your home", isNotificationState: true),

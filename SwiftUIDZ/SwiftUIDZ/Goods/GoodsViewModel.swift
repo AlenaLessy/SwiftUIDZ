@@ -15,6 +15,8 @@ final class GoodsViewModel: ObservableObject {
     private enum Constants {
         static let emptyString = ""
         static let discountFactorNumber = 1.3
+        static let oneStepNumber = 1
+        static let zeroNumber = 0
     }
     
     // MARK: - Public Properties
@@ -50,16 +52,16 @@ final class GoodsViewModel: ObservableObject {
     
     func updateAddFurnitureCount(index: Int) {
         guard index < furnitures.count else { return }
-        furnitures[index].furnitureCount += 1
+        furnitures[index].furnitureCount += Constants.oneStepNumber
         furnitures[index].totalAmount += furnitures[index].price
         summ += furnitures[index].price
     }
     
     func updateRemoveFurnitureCount(index: Int) {
         guard index < furnitures.count,
-        furnitures[index].furnitureCount > 0
+              furnitures[index].furnitureCount > Constants.zeroNumber
         else { return }
-        furnitures[index].furnitureCount -= 1
+        furnitures[index].furnitureCount -= Constants.oneStepNumber
         furnitures[index].totalAmount -= furnitures[index].price
         summ -= furnitures[index].price
     }

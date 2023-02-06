@@ -10,6 +10,17 @@ import SwiftUI
 /// Таб бар приложения
 struct TabBarView: View {
     
+    // MARK: - Private Constants
+    
+    private enum Constants {
+        static let emptyString = ""
+        static let windowSystemImageName = "window.awning"
+        static let bagSystemImageName = "bag.fill"
+        static let personSystemImageName = "person"
+        static let gearshapeSystemImageName = "gearshape.fill"
+        static let ellipsisSystemImageName = "ellipsis"
+    }
+    
     // MARK: - Public Properties
     
     var body: some View {
@@ -19,26 +30,25 @@ struct TabBarView: View {
                 TabView {
                     SelectFurnitureView()
                         .tabItem {
-                            Label("", systemImage: "window.awning")
+                            Label(Constants.emptyString, systemImage: Constants.windowSystemImageName)
                         }
                     GoodsView()
                         .tabItem {
-                            Label("", systemImage: "bag.fill")
+                            Label(Constants.emptyString, systemImage: Constants.bagSystemImageName)
                         }
                     PersonView()
                         .tabItem {
-                            Label("", systemImage: "person")
+                            Label(Constants.emptyString, systemImage: Constants.personSystemImageName)
                         }
                     SelectFurnitureView()
                         .tabItem {
-                            Label("", systemImage: "gearshape.fill")
+                            Label(Constants.emptyString, systemImage: Constants.gearshapeSystemImageName)
                         }
                     SelectFurnitureView()
                         .tabItem {
-                            Label("", systemImage: "ellipsis")
+                            Label(Constants.emptyString, systemImage: Constants.ellipsisSystemImageName)
                         }
                 }
-
             }
             .padding(.top, 10)
         }

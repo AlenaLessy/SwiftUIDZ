@@ -38,7 +38,7 @@ struct FiltersView: View {
                     .offset(y: -70)
                 pricingSliderValue
                 colorTextView
-                colorsLazyVGridView
+                colorsView
                 Spacer()
             }
         }
@@ -80,7 +80,7 @@ struct FiltersView: View {
                 Spacer()
             }
             .padding(.leading, 20)
-            RangedSliderView(value: $filtersViewModel.sliderPosition, bounds: 100...5000)
+            RangedSliderView(value: $filtersViewModel.sliderPositionValues, bounds: 100...5000)
                 .padding(.horizontal, 50)
         }
         .offset(y: -70)
@@ -97,7 +97,7 @@ struct FiltersView: View {
         .padding(.horizontal, 20)
     }
     
-    private var colorsLazyVGridView: some View {
+    private var colorsView: some View {
         LazyVGrid(columns: columns) {
             ForEach(filtersViewModel.getColors(), id: \.self) { color in
                 selectColorButtonView(color: color)
@@ -176,7 +176,6 @@ struct FiltersView: View {
             .foregroundColor(.white)
             .bold()
     }
-    
     
     // MARK: - Private Methods
     

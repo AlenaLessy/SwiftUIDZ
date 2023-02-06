@@ -20,7 +20,7 @@ struct GoodsView: View {
         static let placeholderTextfieldText = "search..."
         static let xmarkCircleSystemImageName = "xmark.circle.fill"
         static let totalAmountText = "Сумма покупок - "
-        static let dollarSymbol = "$"
+        static let dollarSymbolString = "$"
         static let plusSystemImageName = "plus"
         static let minusSystemImageName = "minus"
         static let darkPurpleColorName = "darkPurple"
@@ -34,7 +34,7 @@ struct GoodsView: View {
                 ZStack {
                     gradientNavigationView
                     HStack {
-                        searchBar
+                        searchBarView
                         NavigationLink(Constants.emptyString, destination: FiltersView(), isActive: $goodsViewModel.isFilterButtonPressed)
                         filterButtonView
                     }
@@ -48,9 +48,7 @@ struct GoodsView: View {
                 Spacer()
             }
             .showTabBar()
-        }
-        
-        
+        }   
     }
     
     // MARK: - Private Properties
@@ -63,7 +61,7 @@ struct GoodsView: View {
                 .frame(width: 350, height: 50)
                 .cornerRadius(10)
                 .shadow(color: .black.opacity(0.4), radius: 10)
-            Text("\(Constants.totalAmountText) \(goodsViewModel.summ)\(Constants.dollarSymbol)")
+            Text("\(Constants.totalAmountText) \(goodsViewModel.summ)\(Constants.dollarSymbolString)")
                 .font(.title2)
                 .bold()
                 .foregroundColor(Color.white)
@@ -98,19 +96,12 @@ struct GoodsView: View {
             .ignoresSafeArea(.all)
     }
     
-    private var searchBar: some View {
+    private var searchBarView: some View {
         HStack {
             HStack {
-                Image(systemName: Constants.magnifyingglassSystemImageName)
-                TextField(Constants.placeholderTextfieldText, text: $goodsViewModel.searchText, onEditingChanged: { isEditing in
-                }, onCommit: {
-                })
-                .foregroundColor(.primary)
-                Button(action: {
-                    goodsViewModel.searchText = Constants.emptyString
-                }) {
-                    Image(systemName: Constants.xmarkCircleSystemImageName).opacity(goodsViewModel.searchText == Constants.emptyString ? 0 : 1)
-                }
+                searchBarImageView
+                searchBarPlaceholderView
+                searchBarButtonView
             }
             .padding(EdgeInsets(top: 12, leading: 6, bottom: 12, trailing: 6))
             .foregroundColor(.secondary)
@@ -118,6 +109,25 @@ struct GoodsView: View {
             .cornerRadius(25.0)
         }
         .padding(.horizontal, 15)
+    }
+    
+    private var searchBarImageView: some View {
+        Image(systemName: Constants.magnifyingglassSystemImageName)
+    }
+    
+    private var searchBarPlaceholderView: some View {
+        TextField(Constants.placeholderTextfieldText, text: $goodsViewModel.searchText, onEditingChanged: { isEditing in
+        }, onCommit: {
+        })
+        .foregroundColor(.primary)
+    }
+    
+    private var searchBarButtonView: some View {
+        Button(action: {
+            goodsViewModel.searchText = Constants.emptyString
+        }) {
+            Image(systemName: Constants.xmarkCircleSystemImageName).opacity(goodsViewModel.searchText == Constants.emptyString ? 0 : 1)
+        }
     }
     
     private var filterButtonView: some View {
@@ -146,32 +156,44 @@ struct GoodsView: View {
             VStack {
                 HStack(spacing: 30) {
                     makeProductImageView(index: index)
-                    VStack {
-                        makeProductNameView(index: index)
-                        HStack {
-                            deleteProductButtonView(index: index)
-                            productCountTextView(index: index)
-                            addProductButtonView(index: index)
-                        }
-                    }
-                    VStack {
-                        makeProductOldPriceView(index: index)
-                        makeProductPriceView(index: index)
-                    }
+                    makeSteperWithNameView(index: index)
+                    makeFullPriceView(index: index)
                 }
             }
         }
     }
     
+    private func makeFullPriceView(index: Int) -> some View {
+        VStack {
+            makeProductOldPriceView(index: index)
+            makeProductPriceView(index: index)
+        }
+    }
+    
+    private func makeSteperWithNameView(index: Int) -> some View {
+        VStack {
+            makeProductNameView(index: index)
+            makeSteperView(index: index)
+        }
+    }
+    
+    private func makeSteperView(index: Int) -> some View {
+        HStack {
+            deleteProductButtonView(index: index)
+            productCountTextView(index: index)
+            addProductButtonView(index: index)
+        }
+    }
+    
     private func makeProductOldPriceView(index: Int) -> some View {
-        Text("\(Constants.dollarSymbol)\(goodsViewModel.getOldFurniturePrice(index: index))")
+        Text("\(Constants.dollarSymbolString)\(goodsViewModel.getOldFurniturePrice(index: index))")
             .font(.largeTitle)
             .foregroundColor(Color(.gray))
             .strikethrough()
     }
     
     private func makeProductPriceView(index: Int) -> some View {
-        Text("\(Constants.dollarSymbol)\(goodsViewModel.getFurniturePrice(index: index))")
+        Text("\(Constants.dollarSymbolString)\(goodsViewModel.getFurniturePrice(index: index))")
             .font(.largeTitle)
             .foregroundColor(Color(Constants.darkPurpleColorName))
     }

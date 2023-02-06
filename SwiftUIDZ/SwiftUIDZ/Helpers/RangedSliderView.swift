@@ -14,6 +14,7 @@ struct RangedSliderView: View {
     
     private enum Constants {
         static let darkPurpleColorName = "darkPurple"
+        static let halfHeightNumber: CGFloat = 2
     }
     
     // MARK: - Public Properties
@@ -39,7 +40,7 @@ struct RangedSliderView: View {
     // MARK: - Private Methods
     
     @ViewBuilder private func sliderView(sliderSize: CGSize) -> some View {
-        let sliderViewYCenter = sliderSize.height / 2
+        let sliderViewYCenter = sliderSize.height / Constants.halfHeightNumber
         ZStack {
             RoundedRectangle(cornerRadius: 2)
                 .fill(Color.gray.opacity(0.5))

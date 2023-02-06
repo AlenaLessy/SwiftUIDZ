@@ -25,6 +25,7 @@ struct PersonView: View {
         static let notificationImageName = "notification"
         static let cartImageName = "cart"
         static let personImageName = "33"
+        static let absenceEventNumber = 0
     }
     
     // MARK: - Public Properties
@@ -32,7 +33,7 @@ struct PersonView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                personInfo
+                personInfoView
               infoListView
             }
             .showTabBar()
@@ -44,32 +45,23 @@ struct PersonView: View {
     
     @StateObject private var personViewModel = PersonViewModel()
     
-    
     private var infoListView: some View {
         List {
-            NavigationLink {
-                NotificationsView()
-            } label: {
+            NavigationLink {} label: {
                 makeMenuView(imageName: Constants.messageImageName, name: Constants.messagesText, newEvent: true, eventCount: personViewModel.getMessageCount())
             }
             NavigationLink {
-             
+                NotificationsView()
             } label: {
                 makeMenuView(imageName: Constants.notificationImageName, name: Constants.notificationText, newEvent: true, eventCount: personViewModel.getNotificationCount())
             }
-            NavigationLink {
-                
-            } label: {
+            NavigationLink {} label: {
                 makeMenuView(imageName: Constants.personImageName, name: Constants.accountDetailsText, newEvent: false)
             }
-            NavigationLink {
-                
-            } label: {
+            NavigationLink {} label: {
                 makeMenuView(imageName: Constants.cartImageName, name: Constants.myPurchasesText, newEvent: false)
             }
-            NavigationLink {
-                
-            } label: {
+            NavigationLink {} label: {
                 makeMenuView(imageName: Constants.settingsImageName, name: Constants.settingsText, newEvent: false)
             }
         }
@@ -99,7 +91,7 @@ struct PersonView: View {
         }
     }
     
-    private var personInfo: some View {
+    private var personInfoView: some View {
         VStack(spacing: 0) {
             personImageView
             personNameTextView
@@ -133,7 +125,7 @@ struct PersonView: View {
         }
     }
     
-    private func makeMenuView(imageName: String, name: String, newEvent: Bool, eventCount: Int = 0) -> some View {
+    private func makeMenuView(imageName: String, name: String, newEvent: Bool, eventCount: Int = Constants.absenceEventNumber) -> some View {
         HStack {
             HStack {
                 makeImageListView(imageName: imageName)

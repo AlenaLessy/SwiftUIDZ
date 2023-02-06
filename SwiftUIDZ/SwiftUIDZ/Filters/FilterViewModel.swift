@@ -13,7 +13,7 @@ final class FilterViewModel: ObservableObject {
     // MARK: - Public Properties
     
     @Published var currentColor: Color = .pink
-    @Published var sliderPosition: ClosedRange<Float> = 500...5000
+    @Published var sliderPositionValues: ClosedRange<Float> = 500...5000
     
    // MARK: - Private Properties
     

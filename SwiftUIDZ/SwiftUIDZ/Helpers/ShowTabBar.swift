@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Проверка есть ли таб таб
+/// Проверка есть ли таб бар
 struct Tool {
     
     // MARK: - Public Methods
