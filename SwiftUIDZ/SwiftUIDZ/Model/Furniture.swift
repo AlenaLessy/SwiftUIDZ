@@ -23,7 +23,6 @@ struct Furniture {
     /// Общая сумма товара
     var totalAmount: Int
     
-    
     /// Массив с мебелью
     static func getFurniture() -> [Furniture] {
        [ Furniture(name: "Софа", imageURLString: "https://i.postimg.cc/nr6RgPGW/icons8-sofa-100.png", imageName: "1", price: 55, furnitureCount: 0, totalAmount: 0),
