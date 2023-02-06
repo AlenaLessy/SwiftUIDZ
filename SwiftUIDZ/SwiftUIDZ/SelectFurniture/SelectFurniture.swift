@@ -29,6 +29,7 @@ struct SelectFurnitureView: View {
     var body: some View {
         NavigationView {
             VStack {
+                gradientNavigationView
                 VStack(spacing: 10) {
                     VStack(spacing: 30) {
                         furnitureImageView
@@ -42,6 +43,7 @@ struct SelectFurnitureView: View {
                 .offset(y: 20)
             }
         }
+        .navigationBarBackButtonHidden()
         .onTapGesture {
             isTextEditorFocus = false
         }
@@ -104,7 +106,7 @@ struct SelectFurnitureView: View {
     
     private var descriptionTextEditorView: some View {
         TextEditor(text: $selectFurnitureViewModel.descriptionText)
-            .frame(height: 100)
+            .frame(height: 200)
             .background(Color.yellow)
             .padding(.bottom, keyboardResponder.currentHeight)
             .focused($isTextEditorFocus)
@@ -134,6 +136,19 @@ struct SelectFurnitureView: View {
                 .font(.system(size: 25))
             Spacer()
         }
+    }
+    
+    private var gradientNavigationView: some View {
+        Rectangle()
+            .fill(Color.clear)
+            .frame(height: 60)
+            .background(LinearGradient(
+                colors: [.yellow.opacity(1),
+                         .red.opacity(0.7)],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing)
+            )
+            .padding(.bottom, 5)
     }
 }
 
