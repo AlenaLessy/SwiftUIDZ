@@ -47,7 +47,9 @@ struct GoodsView: View {
                 }
                 Spacer()
             }
+            .showTabBar()
         }
+        
         
     }
     
